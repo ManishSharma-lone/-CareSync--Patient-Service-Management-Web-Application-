@@ -1,0 +1,17 @@
+@font-face {
+    font-family: 'MyCustomFont';
+    src: url('../Font/Outfit-Black.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'MyCustomFont';
+    src: url('../Font/Outfit-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+p{
+    font-family:'MyCustomFont', sans-serif;
+}
