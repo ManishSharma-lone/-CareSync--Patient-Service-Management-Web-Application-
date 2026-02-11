@@ -1,17 +1,100 @@
 @font-face {
-    font-family: 'MyCustomFont';
+    font-family: 'MyCustom';
     src: url('../Font/Outfit-Black.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
-    font-family: 'MyCustomFont';
+    font-family: 'Custom';
     src: url('../Font/Outfit-Bold.ttf') format('truetype');
     font-weight: bold;
     font-style: normal;
 }
 
-p{
-    font-family:'MyCustomFont', sans-serif;
+@font-face {
+    font-family: 'Custom1';
+    src: url('../Font/PlusJakartaSans-Italic.ttf') format('truetype');
+    font-style: italic;
 }
+
+.lead {
+    font-family: 'Custom1' !important;
+}
+
+
+/* Logo size */
+.logo {
+    height: 40px;
+    width: auto;
+}
+
+/* Custom navbar background */
+.custom-navbar,.appoint {
+    background-color: #2563EB;
+    font-family: 'Custom';
+}
+
+/* Navbar text colors */
+.navbar-brand,
+.nav-link {
+    color: white !important;
+    font-weight: 500;
+}
+
+/* Hover effect */
+.nav-link:hover {
+    color: #ffd700 !important;
+}
+
+/* Page background */
+body {
+    background-color:  #F8FAFC;
+}
+
+.lead {
+    font-family: 'Custom1' !important;
+}
+
+
+.service-card img {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    transition: 0.3s ease;
+}
+
+.service-card:hover img {
+    transform: scale(1.1);
+}
+
+.service-card {
+    border-radius: 12px;
+    transition: 0.3s ease;
+}
+
+.service-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 28px rgba(0,0,0,0.12);
+}
+
+.service-card img {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    padding: 12px;
+    background-color: #EFF6FF;
+    border-radius: 50%;
+    transition: 0.3s ease;
+}
+
+.service-card:hover img {
+    transform: scale(1.1);
+    background-color: #DBEAFE;
+}
+
+
+
+
+
+
