@@ -8,14 +8,14 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="/CARESYNC/Bootstrap/bootstrap.min.css">
-
-    <!-- Custom CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+     <!-- Custom CSS -->
     <link rel="stylesheet" href="styles/home.css">
 </head>
 
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-dark custom-navbar">
+    <nav class="navbar navbar-expand-lg navbar-dark custom-navbar" id="home">
         <div class="container-fluid">
 
             <a class="navbar-brand d-flex align-items-center" href="#">
@@ -31,9 +31,8 @@
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav ms-auto">
                     <a class="nav-link active" href="#">Home</a>
-                    <a class="nav-link" href="#">About</a>
                     <a class="nav-link" href="#services">Services</a>
-                    <a class="nav-link" href="#">Contact</a>
+                    <a class="nav-link" href="#contact">Contact</a>
                     <a class="nav-link" href="#">Login</a>
                 </div>
             </div>
@@ -153,10 +152,124 @@
                     <p class="text-muted">24/7 emergency medical services for urgent and critical conditions.</p>
                 </div>
             </div>
-
-
         </div>
     </div>
+
+
+    <section id="contact">
+        <div class="text-center mb-4">
+            <h3 class="fw-bold">Contact US</h3>
+        </div>
+        <div class="container">
+            <div class="contact-card">
+                <div class="row g-0">
+
+                    <!-- LEFT INFO PANEL -->
+                    <div class="col-md-5 contact-info">
+                        <h2>Let's Connect</h2>
+                        <p>Have questions about CareSync? Our team is here to help you anytime.</p>
+
+                        <p>📍 Bhubaneswar, Odisha, India</p>
+                        <p>📞 +91 98765 43210</p>
+                        <p>✉️ support@caresync.com</p>
+
+                        <!-- MAP BELOW EMAIL -->
+                        <div class="map-left mt-4">
+                            <iframe src="https://www.google.com/maps?q=Bhubaneswar,Odisha,India&output=embed"
+                                allowfullscreen="" loading="lazy">
+                            </iframe>
+                        </div>
+
+                    </div>
+
+                    <!-- RIGHT FORM PANEL -->
+                    <div class="col-md-7 contact-right">
+                        <div class="contact-form">
+                            <h4 class="mb-4">Send us a Message</h4>
+
+                            <form>
+                                <input type="text" placeholder="Full Name" required>
+                                <input type="email" placeholder="Email Address" required>
+                                <textarea rows="4" placeholder="Your Message" required></textarea>
+                                <button type="submit">Send Message</button>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+   <!-- WAVE SHAPE -->
+<div class="footer-wave">
+  <svg viewBox="0 0 1440 120" xmlns="http://www.w3.org/2000/svg">
+    <path fill="#2563EB" fill-opacity="1"
+      d="M0,96L80,85.3C160,75,320,53,480,48C640,43,800,53,960,64C1120,75,1280,85,1360,90.7L1440,96V120H0Z">
+    </path>
+  </svg>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <div class="row gy-4">
+
+      <!-- About -->
+      <div class="col-md-4">
+        <h5 class="footer-brand">CareSync</h5>
+        <p class="footer-text">
+          Smart digital healthcare solution helping doctors and patients
+          manage medical data efficiently and securely.
+        </p>
+
+        <!-- Social Icons -->
+        <div class="social-icons">
+          <a href="#"> <img src="icons/facebook.png" class="mx-auto mb-3" width="50"></a>
+          <a href="#"> <img src="icons/social.png" class="mx-auto mb-3" width="50"></i></a>
+          <a href="#"> <img src="icons/twitter.jpeg" class="mx-auto mb-3 rounded-circle" width="50"></i></a>
+          <a href="#"> <img src="icons/linkedin.jpeg" class="mx-auto mb-3 rounded-circle" width="53"></a>
+        </div>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="col-md-3">
+        <h6 class="footer-title">Quick Links</h6>
+        <ul class="footer-links">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+
+      <!-- Legal -->
+      <div class="col-md-2">
+        <h6 class="footer-title">Legal</h6>
+        <ul class="footer-links">
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms of Service</a></li>
+        </ul>
+      </div>
+
+      <!-- Newsletter -->
+      <div class="col-md-3">
+        <h6 class="footer-title">Newsletter</h6>
+        <p class="footer-text">Subscribe to get health tech updates.</p>
+        <form class="newsletter-form">
+          <input type="email" placeholder="Your email" required>
+          <button type="submit">Subscribe</button>
+        </form>
+      </div>
+
+    </div>
+
+    <!-- Bottom -->
+    <div class="footer-bottom text-center mt-4">
+      © 2026 CareSync. All Rights Reserved.
+    </div>
+  </div>
+</footer>
+
 
 
     <!-- Bootstrap JS -->
