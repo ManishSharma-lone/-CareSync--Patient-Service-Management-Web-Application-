@@ -1,15 +1,19 @@
+/* ================= GLOBAL FIX ================= */
+html, body {
+    overflow-x: hidden;
+    background-color: #F8FAFC;
+}
+
+/* ================= FONTS ================= */
 @font-face {
     font-family: 'MyCustom';
     src: url('../Font/Outfit-Black.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
 }
 
 @font-face {
     font-family: 'Custom';
     src: url('../Font/Outfit-Bold.ttf') format('truetype');
     font-weight: bold;
-    font-style: normal;
 }
 
 @font-face {
@@ -22,52 +26,33 @@
     font-family: 'Custom1' !important;
 }
 
-
-/* Logo size */
+/* ================= NAVBAR ================= */
 .logo {
     height: 40px;
     width: auto;
 }
 
-/* Custom navbar background */
-.custom-navbar,.appoint {
+.custom-navbar, .appoint {
     background-color: #2563EB;
     font-family: 'Custom';
 }
 
-/* Navbar text colors */
-.navbar-brand,
-.nav-link {
+.navbar-brand, .nav-link {
     color: white !important;
     font-weight: 500;
 }
 
-/* Hover effect */
 .nav-link:hover {
     color: #ffd700 !important;
 }
 
-/* Page background */
-body {
-    background-color:  #F8FAFC;
+/* ================= HERO ================= */
+.hero-img {
+    max-width: 100%;
+    height: auto;
 }
 
-.lead {
-    font-family: 'Custom1' !important;
-}
-
-
-.service-card img {
-    width: 60px;
-    height: 60px;
-    object-fit: contain;
-    transition: 0.3s ease;
-}
-
-.service-card:hover img {
-    transform: scale(1.1);
-}
-
+/* ================= SERVICES ================= */
 .service-card {
     border-radius: 12px;
     transition: 0.3s ease;
@@ -93,8 +78,9 @@ body {
     background-color: #DBEAFE;
 }
 
+/* ================= CONTACT SECTION ================= */
 #contact {
-    padding: 100px 0;
+    padding: 60px 15px;
     background: linear-gradient(135deg, #e3f2fd, #ffffff);
 }
 
@@ -105,19 +91,16 @@ body {
     overflow: hidden;
 }
 
-/* LEFT PANEL */
 .contact-info {
     background: linear-gradient(135deg, #0d6efd, #3a8bfd);
     color: white;
-    padding: 40px 30px;
+    padding: 35px 25px;
 }
 
 .contact-info h2 {
     font-weight: 700;
-    margin-bottom: 15px;
 }
 
-/* MAP LEFT */
 .map-left {
     border-radius: 12px;
     overflow: hidden;
@@ -131,9 +114,8 @@ body {
     border-radius: 10px;
 }
 
-/* RIGHT PANEL */
 .contact-right {
-    padding: 40px 35px;
+    padding: 35px 25px;
 }
 
 .contact-form h4 {
@@ -174,18 +156,18 @@ body {
     box-shadow: 0 10px 20px #2563EB;
 }
 
-/* Wave */
+/* ================= FOOTER WAVE ================= */
 .footer-wave svg {
     display: block;
     width: 100%;
     margin-bottom: -5px;
 }
 
-/* Footer Dark Theme */
+/* ================= FOOTER ================= */
 .footer {
     background:#2563EB;
     color: #cfd8dc;
-    padding: 60px 0 30px;
+    padding: 60px 20px 30px;
 }
 
 .footer-brand {
@@ -205,7 +187,6 @@ body {
     line-height: 1.6;
 }
 
-/* Links */
 .footer-links {
     list-style: none;
     padding: 0;
@@ -223,26 +204,27 @@ body {
 }
 
 .footer-links a:hover {
-    color: #0d6efd;
+    color: #ffffff;
+    padding-left: 5px;
 }
 
 /* Social Icons */
-.social-icons a {
-    display: inline-block;
-    margin-right: 12px;
-    font-size: 18px;
-    color: #cfd8dc;
+.social-icons img {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    object-fit: cover;
     transition: 0.3s;
 }
 
-.social-icons a:hover {
-    color: #0d6efd;
-    transform: translateY(-3px);
+.social-icons img:hover {
+    transform: scale(1.1);
 }
 
 /* Newsletter */
 .newsletter-form {
     display: flex;
+    gap: 5px;
     margin-top: 10px;
 }
 
@@ -250,7 +232,7 @@ body {
     flex: 1;
     padding: 8px 10px;
     border: none;
-    border-radius: 5px 0 0 5px;
+    border-radius: 6px;
     outline: none;
 }
 
@@ -259,7 +241,7 @@ body {
     border: none;
     background: #0d6efd;
     color: white;
-    border-radius: 0 5px 5px 0;
+    border-radius: 6px;
     transition: 0.3s;
 }
 
@@ -267,17 +249,45 @@ body {
     background: #0b5ed7;
 }
 
-/* Bottom */
 .footer-bottom {
     border-top: 1px solid rgba(255,255,255,0.1);
     padding-top: 15px;
     font-size: 14px;
     color: #FFFFFF;
+    text-align: center;
 }
 
+/* ================= MOBILE RESPONSIVE ================= */
+@media (max-width: 768px) {
 
+    h2 {
+        font-size: 22px;
+    }
 
+    .lead {
+        font-size: 15px;
+    }
 
+    .contact-info, .contact-right {
+        padding: 25px 18px;
+        text-align: center;
+    }
 
+    .map-left iframe {
+        height: 180px;
+    }
 
+    .footer {
+        text-align: center;
+        padding: 40px 15px 20px;
+    }
 
+    .newsletter-form {
+        flex-direction: column;
+    }
+
+    .newsletter-form input,
+    .newsletter-form button {
+        width: 100%;
+    }
+}
