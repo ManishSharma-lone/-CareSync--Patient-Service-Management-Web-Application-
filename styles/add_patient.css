@@ -1,0 +1,161 @@
+@font-face {
+    font-family: 'Custom';
+    src: url('../Font/Outfit-Bold.ttf') format('truetype');
+    font-weight: bold;
+}
+
+.add h3{
+    font-family: 'Custom';
+}
+
+/* Background */
+
+.patient-bg{
+
+background: #2563EB;
+
+min-height:100vh;
+
+}
+
+.logo-care h3{
+        font-family: 'Custom';
+}
+
+
+/* Card Design */
+
+.patient-card{
+
+border-radius:15px;
+
+background: rgba(255,255,255,0.95);
+
+box-shadow:
+0 10px 30px rgba(0,0,0,0.2);
+
+}
+
+
+/* Header */
+
+.patient-header{
+
+background: #2563EB;
+
+color:white;
+
+border-radius:15px 15px 0 0;
+
+}
+
+
+/* Inputs */
+
+.custom-input{
+
+border-radius:10px;
+
+padding:10px;
+
+border:1px solid #ddd;
+
+transition:0.3s;
+
+}
+
+
+.custom-input:focus{
+
+border-color:#2563EB;
+
+box-shadow:
+0 0 8px rgba(37,99,235,0.3);
+
+}
+
+
+/* Button */
+
+.register-btn{
+
+background: #2563EB;
+
+color:white;
+
+border:none;
+
+padding:12px 40px;
+
+border-radius:25px;
+
+font-weight:bold;
+
+transition:0.3s;
+
+}
+
+
+/* .register-btn:hover{
+
+transform:translateY(-2px);
+
+box-shadow:
+0 5px 15px rgba(0,0,0,0.3);
+
+} */
+
+
+/* Footer */
+
+.footer-text{
+
+background:#f8fafc;
+
+border-radius:0 0 15px 15px;
+
+}
+
+
+.register-btn,
+.register-btn:hover,
+.register-btn:focus,
+.register-btn:active,
+.register-btn:visited {
+
+    background: #2563EB !important;
+    color: white !important;
+    border: none !important;
+
+}
+
+
+/* remove Bootstrap focus glow */
+.register-btn:focus,
+.register-btn:active {
+
+    box-shadow: none !important;
+    outline: none !important;
+
+}
+
+.patient-header{
+    padding: 20px 25px;
+}
+
+.logo-care{
+    z-index: 2;
+}
+
+.patient-head{
+    text-align: left;
+}
+.icon-circle{
+    width: 60px;
+    height: 60px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

@@ -1,0 +1,118 @@
+@font-face {
+    font-family: 'Custom';
+    src: url('../Font/Outfit-Bold.ttf') format('truetype');
+    font-weight: bold;
+}
+
+.add h3 {
+    font-family: 'Custom';
+}
+
+
+/* Background */
+
+body{
+    background: linear-gradient(135deg, #2563EB, #1e3a8a);
+    min-height: 100vh;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+
+/* Center container */
+
+.main-container{
+    min-height: 100vh;
+}
+
+
+/* Card */
+
+.doctor-card{
+    width: 100%;
+    max-width: 750px;
+    border-radius: 20px;
+    border: none;
+    overflow: hidden;
+}
+
+
+/* Header */
+
+.doctor-header{
+    background: linear-gradient(90deg, #2563EB, #1d4ed8);
+    color: white;
+    padding: 25px;
+}
+
+
+/* Icon circle */
+
+.icon-circle{
+    width: 60px;
+    height: 60px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+}
+
+
+/* Labels */
+
+.form-label{
+    font-weight: 600;
+    color: #334155;
+}
+
+
+/* Inputs */
+
+.form-control,
+.form-select{
+    border-radius: 12px;
+    padding: 12px;
+    border: 1px solid #ddd;
+    transition: 0.3s;
+}
+
+
+/* Focus effect */
+
+.form-control:focus,
+.form-select:focus{
+    border-color: #2563EB;
+    box-shadow: 0 0 10px rgba(37,99,235,0.3);
+}
+
+
+/* Button */
+
+.add-btn{
+    background: linear-gradient(90deg, #2563EB, #1d4ed8);
+    color: white;
+    border: none;
+    padding: 12px 50px;
+    border-radius: 30px;
+    font-weight: bold;
+    font-size: 17px;
+    transition: 0.3s;
+}
+
+
+/* Hover */
+
+.add-btn:hover{
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+
+/* Footer */
+
+.footer-text{
+    background: #f8fafc;
+    text-align: center;
+    padding: 12px;
+}

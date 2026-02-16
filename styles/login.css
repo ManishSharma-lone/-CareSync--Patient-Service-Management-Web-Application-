@@ -1,0 +1,93 @@
+@font-face {
+    font-family: 'MyCustom';
+    src: url('../Font/Outfit-Black.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Custom';
+    src: url('../Font/Outfit-Bold.ttf') format('truetype');
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: 'Custom1';
+    src: url('../Font/PlusJakartaSans-Italic.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* Apply font */
+.logo-care h2 {
+    font-family: 'Custom';
+}
+
+
+body {
+    background: linear-gradient(135deg, #2563EB, #1E40AF);
+    height: 100vh;
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.login-container {
+    height: 100vh;
+}
+
+.login-card {
+    background: white;
+    width: 400px;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.login-header {
+    background-color: #2563EB;
+    color: white;
+    padding: 20px;
+}
+
+.login-header p {
+    margin: 0;
+    font-size: 14px;
+}
+
+.login-body h5 {
+    font-weight: 600;
+}
+
+.form-control {
+    border-radius: 8px;
+    padding: 10px;
+}
+
+.login-btn {
+    border-radius: 8px;
+    padding: 10px;
+    font-weight: 600;
+}
+
+.forgot-link {
+    font-size: 14px;
+    text-decoration: none;
+    color: #2563EB;
+}
+
+.forgot-link:hover {
+    text-decoration: underline;
+}
+
+.login-footer {
+    background-color: #f1f5f9;
+    font-size: 13px;
+}
+
+.btn-rounded{
+    border-radius: 50px;
+    padding: 10px 30px;
+    font-weight: 600;
+}
+
+/* .logo-care{
+    font-family: 'Custom1' !important;
+} */
+

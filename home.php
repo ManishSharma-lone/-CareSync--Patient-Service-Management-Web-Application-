@@ -30,7 +30,7 @@
                     <a class="nav-link active" href="#">Home</a>
                     <a class="nav-link" href="#services">Services</a>
                     <a class="nav-link" href="#contact">Contact</a>
-                    <a class="nav-link" href="#">Login</a>
+                    <a class="nav-link" href="/CARESYNC/login.php">Login</a>
                 </div>
             </div>
         </div>
