@@ -26,7 +26,7 @@
                 </div>
 
                 <div class="add">
-                    <h3 class="mb-0">Add New Doctor</h3>
+                    <h3 class="mb-0">Update Doctor</h3>
                     <small>Enter doctor professional details</small>
                 </div>
 
