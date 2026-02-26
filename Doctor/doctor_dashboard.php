@@ -27,18 +27,20 @@
             </div>
 
             <!-- RIGHT SIDE (Icons + Logout) -->
-            <div class="d-flex align-items-center">
-                <div class="icon-circle">
+            <div class="d-flex align-items-center gap-3">
+
+                <div class="icon-circle d-flex align-items-center justify-content-center">
                     🔔
                 </div>
 
-                <div class="icon-circle">
-                    <img src="../icons/doctor.png" width="18">
+                <div class="icon-circle d-flex align-items-center justify-content-center">
+                    <img src="../icons/doctor.png" width="18" alt="Doctor">
                 </div>
 
-                <a href="../home.php" class="btn btn-light logout-btn">
-                    Logout
+                <a href="../home.php" class="btn btn-light btn-rounded logout-btn">
+                    LogOut
                 </a>
+
             </div>
 
         </div>

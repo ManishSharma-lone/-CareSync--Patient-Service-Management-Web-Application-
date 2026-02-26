@@ -83,3 +83,22 @@ body {
 .section-spacing {
     margin-top: 30px;
 }
+
+.icon-circle {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background-color: #f1f3f5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.logout-btn{
+    border-radius: 50px;     /* more rounded */
+    font-weight: 600;        /* bold text */
+    padding: 8px 25px;       /* better size */
+    font-size: 16px;         /* slightly bigger */
+}
+
