@@ -47,13 +47,13 @@
                         <div class="col-md-6 mb-3">
                             <label class="form-label">Department</label>
                             <select class="form-select">
-                                <option>Select Department</option>
-                                <option>Cardiology</option>
-                                <option>Neurology</option>
-                                <option>Orthopedics</option>
-                                <option>Dermatology</option>
-                                <option>Pediatrics</option>
-                                <option>General Medicine</option>
+                                <option value="">Select Department</option>
+                                <option value="Cardiology">Cardiology</option>
+                                <option value="Neurology">Neurology</option>
+                                <option value="Orthopedics">Orthopedics</option>
+                                <option value="Gynecology">Gynecology</option>
+                                <option value="Pediatrics">Pediatrics</option>
+                                <option value="General Medicine">General Medicine</option>
                             </select>
                         </div>
 

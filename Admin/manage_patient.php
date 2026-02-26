@@ -11,7 +11,6 @@
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="../styles/manage_patient.css">
-
 </head>
 
 <body class="admin-bg">
@@ -156,14 +155,9 @@
                                         onclick="confirmDelete('P1003')">
                                         Delete
                                     </button>
-
                                 </td>
-
                             </tr>
-
-
                         </tbody>
-
                     </table>
 
                 </div>

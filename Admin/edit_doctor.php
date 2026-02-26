@@ -47,7 +47,7 @@
                         <div class="col-md-6 mb-3">
                             <label class="form-label">Department</label>
                             <select class="form-select">
-                                <option>Select Department</option>
+                                <option value="">Select Department</option>
                                 <option>Cardiology</option>
                                 <option>Neurology</option>
                                 <option>Orthopedics</option>

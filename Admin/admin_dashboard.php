@@ -27,7 +27,6 @@
             <a href="../home.php" class="btn btn-light btn-rounded logout-btn">
                 LogOut
             </a>
-
         </div>
 
     </div>
@@ -40,7 +39,7 @@
 
         <a href="manage_patient.php" class="nav-btn">Patients</a>
 
-        <a href="appointments.php" class="nav-btn">Appointments</a>
+        <a href="doctor_schedule.php" class="nav-btn">Appointments</a>
 
         <a href="records.php" class="nav-btn">Records</a>
 
