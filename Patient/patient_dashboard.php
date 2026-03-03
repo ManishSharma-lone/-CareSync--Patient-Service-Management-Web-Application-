@@ -165,7 +165,7 @@
     <div class="footer">
         © 2026 Care-Sync | Privacy Policy | Terms
     </div>
-
+    <script src="../Bootstrap/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
