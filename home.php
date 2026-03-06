@@ -53,7 +53,8 @@
                     experience.</p>
 
                 <div class="text-center text-md-start mt-4">
-                    <a href="#" class="btn appoint btn-lg px-4" style=" background-color: #2563EB;color:#F8FAFC">Book
+                    <a href="#" class="btn book-btn btn-lg px-4" data-bs-toggle="modal" data-bs-target="#loginModal"
+                        style=" background-color: #2563EB;color:#F8FAFC">Book
                         Appointment</a>
                 </div>
             </div>
@@ -199,74 +200,118 @@
     </section>
 
     <!-- Footer -->
-   <!-- WAVE SHAPE -->
-<div class="footer-wave">
-  <svg viewBox="0 0 1440 120" xmlns="http://www.w3.org/2000/svg">
-    <path fill="#2563EB" fill-opacity="1"
-      d="M0,96L80,85.3C160,75,320,53,480,48C640,43,800,53,960,64C1120,75,1280,85,1360,90.7L1440,96V120H0Z">
-    </path>
-  </svg>
-</div>
+    <!-- WAVE SHAPE -->
+    <div class="footer-wave">
+        <svg viewBox="0 0 1440 120" xmlns="http://www.w3.org/2000/svg">
+            <path fill="#2563EB" fill-opacity="1"
+                d="M0,96L80,85.3C160,75,320,53,480,48C640,43,800,53,960,64C1120,75,1280,85,1360,90.7L1440,96V120H0Z">
+            </path>
+        </svg>
+    </div>
 
-<footer class="footer">
-  <div class="container">
-    <div class="row gy-4">
+    <footer class="footer">
+        <div class="container">
+            <div class="row gy-4">
 
-      <!-- About -->
-      <div class="col-md-4">
-        <h5 class="footer-brand">CareSync</h5>
-        <p class="footer-text">
-          Smart digital healthcare solution helping doctors and patients
-          manage medical data efficiently and securely.
-        </p>
+                <!-- About -->
+                <div class="col-md-4">
+                    <h5 class="footer-brand">CareSync</h5>
+                    <p class="footer-text">
+                        Smart digital healthcare solution helping doctors and patients
+                        manage medical data efficiently and securely.
+                    </p>
 
-        <!-- Social Icons -->
-        <div class="social-icons">
-          <a href="#"> <img src="icons/facebook.png" class="mx-auto mb-3" width="50"></a>
-          <a href="#"> <img src="icons/social.png" class="mx-auto mb-3" width="50"></i></a>
-          <a href="#"> <img src="icons/twitter.jpeg" class="mx-auto mb-3 rounded-circle" width="50"></i></a>
-          <a href="#"> <img src="icons/linkedin.jpeg" class="mx-auto mb-3 rounded-circle" width="53"></a>
+                    <!-- Social Icons -->
+                    <div class="social-icons">
+                        <a href="#"> <img src="icons/facebook.png" class="mx-auto mb-3" width="50"></a>
+                        <a href="#"> <img src="icons/social.png" class="mx-auto mb-3" width="50"></i></a>
+                        <a href="#"> <img src="icons/twitter.jpeg" class="mx-auto mb-3 rounded-circle"
+                                width="50"></i></a>
+                        <a href="#"> <img src="icons/linkedin.jpeg" class="mx-auto mb-3 rounded-circle" width="53"></a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="col-md-3">
+                    <h6 class="footer-title">Quick Links</h6>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Legal -->
+                <div class="col-md-2">
+                    <h6 class="footer-title">Legal</h6>
+                    <ul class="footer-links">
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+
+                <!-- Newsletter -->
+                <div class="col-md-3">
+                    <h6 class="footer-title">Newsletter</h6>
+                    <p class="footer-text">Subscribe to get health tech updates.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Your email" required>
+                        <button type="submit">Subscribe</button>
+                    </form>
+                </div>
+
+            </div>
+
+            <!-- Bottom -->
+            <div class="footer-bottom text-center mt-4">
+                © 2026 CareSync. All Rights Reserved.
+            </div>
         </div>
-      </div>
+    </footer>
+    <div class="modal fade" id="loginModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered modal-md">
 
-      <!-- Quick Links -->
-      <div class="col-md-3">
-        <h6 class="footer-title">Quick Links</h6>
-        <ul class="footer-links">
-          <li><a href="#home">Home</a></li>
-          <li><a href="#services">Services</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </div>
+            <div class="modal-content care-modal">
 
-      <!-- Legal -->
-      <div class="col-md-2">
-        <h6 class="footer-title">Legal</h6>
-        <ul class="footer-links">
-          <li><a href="#">Privacy Policy</a></li>
-          <li><a href="#">Terms of Service</a></li>
-        </ul>
-      </div>
+                <!-- Header -->
+                <div class="modal-header custom-header">
+                    <div class="d-flex align-items-center">
+                        <img src="/CARESYNC/Assets/CareSyncLogo.png" alt="Logo" class="logo-circle me-2">
+                        <h5 class="modal-title mb-0">CareSync</h5>
+                    </div>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
 
-      <!-- Newsletter -->
-      <div class="col-md-3">
-        <h6 class="footer-title">Newsletter</h6>
-        <p class="footer-text">Subscribe to get health tech updates.</p>
-        <form class="newsletter-form">
-          <input type="email" placeholder="Your email" required>
-          <button type="submit">Subscribe</button>
-        </form>
-      </div>
+                <!-- Body -->
+                <div class="modal-body text-center">
 
+                    <h5 class="mb-3">Book Appointment</h5>
+
+                    <p class="question-text">
+                        Have you registered with us?
+                    </p>
+
+                    <p class="info-text">
+                        Login to continue or create a new account to book your appointment.
+                    </p>
+
+                    <div class="button-group">
+
+                        <a href="./login.php" class="btn login-btn">
+                            Login
+                        </a>
+
+                        <a href="./Admin/add_patient.php" class="btn signup-btn">
+                            Signup
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
     </div>
-
-    <!-- Bottom -->
-    <div class="footer-bottom text-center mt-4">
-      © 2026 CareSync. All Rights Reserved.
-    </div>
-  </div>
-</footer>
-
 
 
     <!-- Bootstrap JS -->

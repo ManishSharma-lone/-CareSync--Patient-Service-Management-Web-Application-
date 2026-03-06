@@ -53,6 +53,7 @@
                 <a href="#">🧾 Medical Reports</a>
                 <a href="#">⭐ My Reviews</a>
                 <a href="#">🔔 Notifications</a>
+                <a href="#">🩺 Book Appointment</a>
             </div>
 
             <!-- MAIN CONTENT -->

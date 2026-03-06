@@ -14,9 +14,7 @@
 </head>
 
 <body>
-
     <div class="login-container d-flex align-items-center justify-content-center">
-
         <div class="login-card shadow-lg">
 
             <!-- Header -->

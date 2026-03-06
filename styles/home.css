@@ -291,3 +291,105 @@ html, body {
         width: 100%;
     }
 }
+
+/* Book Appointment Button */
+
+.book-btn{
+background:#2d6cdf;
+color:white;
+padding:10px 25px;
+border-radius:25px;
+font-weight:600;
+border:none;
+}
+
+/* Modal Design */
+
+/* Modal Container */
+
+.care-modal{
+border-radius:12px;
+overflow:hidden;
+box-shadow:0 10px 30px rgba(0,0,0,0.2);
+border:none;
+}
+
+/* Header */
+
+.custom-header{
+background:#2d6cdf;
+color:white;
+padding:15px 20px;
+}
+
+/* Body */
+
+.modal-body{
+padding:35px;
+}
+
+/* Question Text */
+
+.question-text{
+font-size:18px;
+font-weight:500;
+margin-bottom:5px;
+}
+
+/* Info Text */
+
+.info-text{
+font-size:14px;
+color:#666;
+margin-bottom:25px;
+}
+
+/* Button Group */
+
+.button-group{
+display:flex;
+justify-content:center;
+gap:20px;
+}
+
+/* Login Button */
+
+.login-btn{
+background:#2d6cdf;
+color:white;
+padding:10px 30px;
+border-radius:25px;
+font-weight:500;
+}
+
+/* Signup Button */
+
+.signup-btn{
+border:2px solid #2d6cdf;
+color:#2d6cdf;
+padding:10px 30px;
+border-radius:25px;
+font-weight:500;
+}
+
+/* Hover Effects */
+
+.login-btn:hover{
+background:#1e4fbf;
+color:white;
+}
+
+.signup-btn:hover{
+background:#2d6cdf;
+color:white;
+}
+
+.logo-circle{
+width:40px;
+height:40px;
+border-radius:50%;
+object-fit:cover;
+border:2px solid white;
+padding:3px;
+background:white;
+}
