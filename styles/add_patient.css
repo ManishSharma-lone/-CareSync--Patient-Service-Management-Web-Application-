@@ -159,3 +159,52 @@ border-radius:0 0 15px 15px;
     align-items: center;
     justify-content: center;
 }
+
+/* Success Modal Blue Theme */
+
+.success-modal{
+    background: #2563EB;
+    color:white;
+    border-radius:15px;
+    border:none;
+    padding:20px;
+}
+
+.success-icon{
+    width:70px;
+    height:70px;
+    background:white;
+    color:#007bff;
+    font-size:35px;
+    font-weight:bold;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin:0 auto 15px;
+}
+
+.success-title{
+    font-weight:600;
+}
+
+.success-text{
+    font-size:14px;
+}
+
+.ok-btn{
+    background:white;
+    color:#007bff;
+    border:none;
+    padding:8px 25px;
+    border-radius:20px;
+    font-weight:500;
+}
+
+.ok-btn:hover{
+    background:#f1f1f1;
+}
+
+.modal-body{
+    padding:30px;
+}
