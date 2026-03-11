@@ -1,3 +1,43 @@
+<?php
+require_once "./dbconnect.php";
+require_once "./contact_mail.php";
+
+if ($_SERVER['REQUEST_METHOD'] == "POST") {
+
+    $name = htmlspecialchars($_POST['name']);
+    $email = htmlspecialchars($_POST['email']);
+    $message = htmlspecialchars($_POST['message']);
+
+    // Insert into database
+    $qry = "INSERT INTO contact(name,email,message) VALUES(?,?,?)";
+    $stmt = $conn->prepare($qry);
+    $stmt->bind_param("sss", $name, $email, $message);
+    $res = $stmt->execute();
+
+    if ($res) {
+
+        // Send mail to CareSync
+        $subject = "New Contact Message";
+        $body = "
+        <h3>New Message Received</h3>
+        <b>Name:</b> $name <br><br>
+        <b>Email:</b> $email <br><br>
+        <b>Message:</b><br>$message
+        ";
+
+        sendMail(
+            "caresyncbbsr@gmail.com",
+            "CareSync Admin",
+            $subject,
+            $body,
+            $email,
+            $name
+        );
+
+        $success = true;
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -169,7 +209,7 @@
 
                         <p>📍 Bhubaneswar, Odisha, India</p>
                         <p>📞 +91 98765 43210</p>
-                        <p>✉️ support@caresync.com</p>
+                        <p>✉️ caresyncbbsr@gmail.com</p>
 
                         <!-- MAP BELOW EMAIL -->
                         <div class="map-left mt-4">
@@ -185,10 +225,10 @@
                         <div class="contact-form">
                             <h4 class="mb-4">Send us a Message</h4>
 
-                            <form>
-                                <input type="text" placeholder="Full Name" required>
-                                <input type="email" placeholder="Email Address" required>
-                                <textarea rows="4" placeholder="Your Message" required></textarea>
+                            <form id="contact" method="post">
+                                <input type="text" name="name" placeholder="Full Name" required>
+                                <input type="email" name="email" placeholder="Email Address" required>
+                                <textarea rows="4" name="message" placeholder="Your Message" required></textarea>
                                 <button type="submit">Send Message</button>
                             </form>
                         </div>
@@ -198,7 +238,6 @@
             </div>
         </div>
     </section>
-
     <!-- Footer -->
     <!-- WAVE SHAPE -->
     <div class="footer-wave">
@@ -314,8 +353,29 @@
     </div>
 
 
+   <div class="modal fade" id="successModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content success-modal text-center">
+            <div class="modal-body">
+                <div class="success-icon">✔</div>
+                <h4 class="success-title">Success</h4>
+                <p class="success-text">Thank you for contacting CareSync</p>
+                <button class="btn ok-btn mt-2" data-bs-dismiss="modal">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
+
     <!-- Bootstrap JS -->
     <script src="/CARESYNC/Bootstrap/bootstrap.bundle.min.js"></script>
+    <script>
+<?php if ($success) { ?>
+                document.addEventListener('DOMContentLoaded', function () {
+                    var successModal = new bootstrap.Modal(document.getElementById('successModal'));
+                    successModal.show();
+                });
+<?php } ?>
+    </script>
 
 </body>
 

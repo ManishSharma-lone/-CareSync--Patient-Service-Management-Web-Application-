@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 11, 2026 at 08:19 AM
+-- Generation Time: Mar 11, 2026 at 09:18 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -20,6 +20,18 @@ SET time_zone = "+00:00";
 --
 -- Database: `caresync`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `contact`
+--
+
+CREATE TABLE `contact` (
+  `name` varchar(50) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `message` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -45,9 +57,8 @@ CREATE TABLE `doctors` (
 --
 
 INSERT INTO `doctors` (`id`, `doctor_code`, `full_name`, `department`, `specialization`, `experience`, `contact`, `email`, `password`, `created_at`) VALUES
-(1, 'DOC-2026-001', 'AnweshaDas ', 'Cardiology', 'surgeon', 3, '8340778990', 'anu@gmail.com', '$2y$10$KIDdu4O6upMihZKkkQgowOxzh0UNEiK98vvp1PQ0FOKlLbOMUzi4e', '2026-03-11 06:50:01'),
-(2, 'DOC-2026-002', 'Rahul', 'Neurology', 'surgeon', 1, '7896652320', 'rahul@gmail.com', '$2y$10$qcBK5E5YcfcduSDaocRNYOorw7/quicMsn/x3MIjsrY7rMIIDzxWG', '2026-03-11 06:59:27'),
-(3, 'DOC-2026-003', 'Prachi ', 'General Medicine', 'medicine', 4, '9654123780', 'prachi@gmail.com', '$2y$10$m.UAmaK8MRJ8QqBXgwgI.e2uqy7qNAvldfS6oUyPeoNUOdoQHpXfK', '2026-03-11 07:04:37');
+(1, 'DOC-2026-001', 'Prachi Mahato', 'Cardiology', 'surgeon', 3, '7894561230', 'manishsharma081999@gmail.com', '$2y$10$BbJpBf51jscc.BXHQN133e5Wg5UhXjfLBCLGtgywSBtB2X/AXraDW', '2026-03-11 18:34:38'),
+(2, 'DOC-2026-002', 'Manish Sharma', 'Neurology', 'surgeon', 5, '8340778990', 'sharmamanish5846579@gmail.com', '$2y$10$kJq8OlzsyMpVAvQdVC57te0hum4nFZV.HJxDuvgIWW914RihZbR3u', '2026-03-11 18:36:13');
 
 -- --------------------------------------------------------
 
@@ -71,13 +82,6 @@ CREATE TABLE `patients` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `patients`
---
-
-INSERT INTO `patients` (`id`, `patient_code`, `full_name`, `email`, `mobile`, `dob`, `gender`, `aadhar`, `blood_group`, `city`, `address`, `password`, `created_at`) VALUES
-(1, 'PAT-2026-001', 'Manish Sharma', 'SHARMAMANISH5846579@GMAIL.COM', '0834077899', '2026-03-01', 'male', '123456789235', 'A+', 'Barajamda', 'Near Reliance Tower Football Ground Barajamda', '$2y$10$sjJhxMQr09ggQJRinQKBv.QczxZoFtfnFTSsknR9Hqaz7mUpaA2mK', '2026-03-10 19:14:16');
-
 -- --------------------------------------------------------
 
 --
@@ -97,12 +101,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `role`) VALUES
-(1, 'Manish Sharma', 'SHARMAMANISH5846579@GMAIL.COM', '$2y$10$sjJhxMQr09ggQJRinQKBv.QczxZoFtfnFTSsknR9Hqaz7mUpaA2mK', 'patient'),
-(2, '', '', '$2y$10$96ToqSPqOsHpCbdq2ue8XuSNbJyAW16PflSByJCzBiUfeBNT0YFSW', 'doctor'),
-(3, 'AnweshaDas ', 'anu@gmail.com', '$2y$10$KIDdu4O6upMihZKkkQgowOxzh0UNEiK98vvp1PQ0FOKlLbOMUzi4e', 'doctor'),
-(5, 'Rahul', 'rahul@gmail.com', '$2y$10$qcBK5E5YcfcduSDaocRNYOorw7/quicMsn/x3MIjsrY7rMIIDzxWG', 'doctor'),
-(6, 'Prachi ', 'prachi@gmail.com', '$2y$10$m.UAmaK8MRJ8QqBXgwgI.e2uqy7qNAvldfS6oUyPeoNUOdoQHpXfK', 'doctor'),
-(7, 'Admin', 'admincaresync@gmail.com', '$2y$10$PEBRMAQaCN3yNrJ2b66uNuFsnyogU4var7JYFmv/aovw0ZQecKp52', 'admin');
+(1, 'Prachi Mahato', 'manishsharma081999@gmail.com', '$2y$10$BbJpBf51jscc.BXHQN133e5Wg5UhXjfLBCLGtgywSBtB2X/AXraDW', 'doctor'),
+(2, 'Manish Sharma', 'sharmamanish5846579@gmail.com', '$2y$10$kJq8OlzsyMpVAvQdVC57te0hum4nFZV.HJxDuvgIWW914RihZbR3u', 'doctor');
 
 --
 -- Indexes for dumped tables
@@ -143,19 +143,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `doctors`
 --
 ALTER TABLE `doctors`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `patients`
 --
 ALTER TABLE `patients`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

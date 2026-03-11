@@ -228,7 +228,12 @@
                 );
 
                 $userStmt->execute();
+                // $patient_name = $name;
+                // $patient_email = $email;
+                // $patient_id = $patient_code;
 
+                include "../php_mail.php";
+                sendPatientMail($email,$name,$patient_code);
                 echo "<script>
             document.addEventListener('DOMContentLoaded', function(){
             var myModal=new bootstrap.Modal(document.getElementById('successModal'));
@@ -237,11 +242,8 @@
             </script>";
 
             }
-
         }
-
         $conn->close();
-
     }
 
     ?>

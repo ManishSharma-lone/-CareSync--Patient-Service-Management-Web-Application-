@@ -171,6 +171,10 @@
             $userStmt->bind_param("ssss", $name, $email, $passwordHash, $role);
             $userStmt->execute();
 
+            
+             include "../doctor_mail.php";
+             sendDoctorMail($email,$name,$doctor_code,  $specialization);
+
             echo "<script> document.addEventListener('DOMContentLoaded', function(){
               var myModal = new bootstrap.Modal(document.getElementById('successModal'));
               myModal.show();});</script>";
