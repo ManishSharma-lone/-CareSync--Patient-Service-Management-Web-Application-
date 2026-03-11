@@ -116,3 +116,50 @@ body{
     text-align: center;
     padding: 12px;
 }
+
+
+.modal-content.success-modal{
+    background:#2563EB !important;
+    color:white;
+    border-radius:15px;
+    border:none;
+}
+
+.success-icon{
+    width:70px;
+    height:70px;
+    background:white;
+    color:#2563EB;
+    font-size:35px;
+    font-weight:bold;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin:0 auto 20px;
+}
+
+.success-title{
+    font-weight:600;
+}
+
+.success-text{
+    font-size:14px;
+}
+
+.ok-btn{
+    background:white;
+    color:#2563EB;
+    border:none;
+    padding:8px 25px;
+    border-radius:20px;
+    font-weight:500;
+}
+
+.ok-btn:hover{
+    background:#f1f1f1;
+}
+
+.modal-body{
+    padding:30px !important;
+}
