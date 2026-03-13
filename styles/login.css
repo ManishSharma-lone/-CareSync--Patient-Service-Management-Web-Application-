@@ -91,3 +91,29 @@ body {
     font-family: 'Custom1' !important;
 } */
 
+.forgot-modal{
+    background: linear-gradient(135deg,#2563EB,#1E40AF);
+    border-radius:15px;
+    padding:20px;
+    color:white;
+}
+
+.forgot-icon{
+    width:70px;
+    height:70px;
+    background:white;
+    color:#2563EB;
+    font-size:30px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin:0 auto;
+}
+
+.reset-btn{
+    width:100%;
+    border-radius:25px;
+    font-weight:600;
+    padding:10px;
+}

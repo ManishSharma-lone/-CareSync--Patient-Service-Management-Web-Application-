@@ -64,7 +64,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <link rel="stylesheet" href="Bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="styles/login.css">
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
 </head>
 
 <body>
@@ -115,11 +115,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <small id="passwordError" class="text-danger"></small>
 
                     </div>
-
                     <div class="mb-3 text-end">
-
-                        <a href="#" class="forgot-link">Forgot Password?</a>
-
+                        <a href="#" class="forgot-link" data-bs-toggle="modal" data-bs-target="#successModal">
+                            Forgot Password?
+                        </a>
                     </div>
 
                     <div class="d-grid">
@@ -139,6 +138,42 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             </div>
 
+        </div>
+    </div>
+
+    <div class="modal fade" id="successModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content forgot-modal">
+
+                <div class="modal-header border-0">
+                    <h5 class="modal-title text-white">Reset Password</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+
+                <div class="modal-body text-center">
+
+                    <div class="forgot-icon mb-3">
+                        <img src="./icons/gmail.png" class="mx-auto mb-3" width="50">
+                    </div>
+
+                    <p class="text-white mb-3">
+                        Enter your email to receive a password reset link
+                    </p>
+
+                    <form action="./forgotpassword/send_reset.php" method="POST">
+
+                        <input type="email" name="email" class="form-control mb-3"
+                            placeholder="Enter your email address" required>
+
+                        <button type="submit" class="btn btn-light reset-btn">
+                            Send Reset Link
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </div>
         </div>
     </div>
 
