@@ -116,7 +116,7 @@
     if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
         require_once "../dbconnect.php";
-
+        $success=false;
         $name = $_POST['name'];
         $department = $_POST['department'];
         $specialization = $_POST['specialization'];
@@ -155,7 +155,7 @@
 
         if ($res) {
             $last_id = $conn->insert_id;
-
+            $success=true;
             // Generate doctor code
             $year = date("Y");
             $doctor_code = "DOC-" . $year . "-" . str_pad($last_id, 3, "0", STR_PAD_LEFT);
@@ -211,6 +211,19 @@
 
     <script src="../Bootstrap/bootstrap.bundle.min.js"></script>
     <script src="../js/add_doctor.js"></script>
+        <?php if (isset($success) && $success) { ?>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+              var successModal = new bootstrap.Modal(document.getElementById('successModal'));
+                successModal.show();
+                setTimeout(function () {
+                    window.location.href = "admin_dashboard.php";
+                }, 2000);
+
+            });
+        </script>
+    <?php } ?>
 </body>
 
 </html>

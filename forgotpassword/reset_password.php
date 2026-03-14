@@ -101,8 +101,6 @@ myModal.show();
 ";
     }
     ?>
-
-
 </body>
 
 </html>

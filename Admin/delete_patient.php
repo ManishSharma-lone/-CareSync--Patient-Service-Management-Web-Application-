@@ -1,6 +1,6 @@
 <?php
 if (!isset($_GET['id'])) {
-    header('location:manage_doctor.php');
+    header('location:manage_patient.php');
 }
 
 require_once "../dbconnect.php";
@@ -12,13 +12,13 @@ $conn->begin_transaction();
 try {
 
     /* DELETE FROM PATIENTS TABLE */
-    $qry1 = "DELETE FROM patients WHERE doctor_code=?";
+    $qry1 = "DELETE FROM patients WHERE patient_code=?";
     $stmt1 = $conn->prepare($qry1);
     $stmt1->bind_param("s", $id);
     $stmt1->execute();
 
     /* DELETE FROM SECOND TABLE */
-    $qry2 = "DELETE FROM users WHERE doctor_code=?";
+    $qry2 = "DELETE FROM users WHERE patient_code=?";
     $stmt2 = $conn->prepare($qry2);
     $stmt2->bind_param("s", $id);
     $stmt2->execute();
@@ -35,7 +35,7 @@ try {
     $conn->rollback();
 
     $status = "Failed";
-    $message = "Doctor Not Deleted";
+    $message = "Patient Not Deleted";
     $color = "danger";
 }
 ?>
@@ -57,7 +57,7 @@ try {
                 </div>
                 <div class="modal-body text-center">
                     <h5><?php echo $message; ?></h5>
-                    <p class="text-muted">Redirecting to Doctor list...</p>
+                    <p class="text-muted">Redirecting to patient list...</p>
                 </div>
             </div>
         </div>
@@ -67,7 +67,7 @@ try {
         modal.show();
         /* AUTO REDIRECT */
         setTimeout(function () {
-            window.location = "manage_doctor.php";
+            window.location = "manage_patient.php";
         }, 2000);
 
     </script>

@@ -29,7 +29,7 @@
 
             <div class="card-body p-4">
 
-                <form id="patientForm" onsubmit="return validateForm()" method="post">
+                <form id="patientForm" onsubmit="return validateForm()" method="post" action="add_patient.php">
 
                     <div class="row">
 
@@ -140,7 +140,7 @@
     if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
         require_once "../dbconnect.php";
-
+        $success = false;
         $name = $_POST['name'];
         $email = $_POST['email'];
         $mobile = $_POST['mobile'];
@@ -195,10 +195,9 @@
             );
 
             $res = $stmt->execute();
-
             if ($res) {
                 $last_id = $conn->insert_id;
-
+                $success = true;
                 /* STEP 3: GENERATE PATIENT CODE */
 
                 $year = date("Y");
@@ -214,26 +213,27 @@
 
                 $role = "patient";
 
-                $userQry = "INSERT INTO users(name,email,password,role)
-            VALUES(?,?,?,?)";
+                $userQry = "INSERT INTO users(name,email,password,role,patient_code)
+            VALUES(?,?,?,?,?)";
 
                 $userStmt = $conn->prepare($userQry);
 
                 $userStmt->bind_param(
-                    "ssss",
+                    "sssss",
                     $name,
                     $email,
                     $passwordHash,
-                    $role
+                    $role,
+                    $patient_code
                 );
 
                 $userStmt->execute();
                 // $patient_name = $name;
                 // $patient_email = $email;
                 // $patient_id = $patient_code;
-
+    
                 include "../php_mail.php";
-                sendPatientMail($email,$name,$patient_code);
+                sendPatientMail($email, $name, $patient_code);
                 echo "<script>
             document.addEventListener('DOMContentLoaded', function(){
             var myModal=new bootstrap.Modal(document.getElementById('successModal'));
@@ -247,7 +247,6 @@
     }
 
     ?>
-
     <div class="modal fade" id="successModal" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content success-modal text-center">
@@ -274,7 +273,18 @@
 
     <script src="../Bootstrap/bootstrap.bundle.min.js"></script>
     <script src="../js/add_patient.js"></script>
+    <?php if (isset($success) && $success) { ?>
 
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+              var successModal = new bootstrap.Modal(document.getElementById('successModal'));
+                successModal.show();
+                setTimeout(function () {
+                    window.location.href = "admin_dashboard.php";
+                }, 2000);
+
+            });
+        </script>
+    <?php } ?>
 </body>
-
 </html>

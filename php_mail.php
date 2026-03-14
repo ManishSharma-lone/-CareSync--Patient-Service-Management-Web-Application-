@@ -7,7 +7,7 @@ require __DIR__ . '/PHPMailer/src/Exception.php';
 require __DIR__ . '/PHPMailer/src/PHPMailer.php';
 require __DIR__ . '/PHPMailer/src/SMTP.php';
 
-echo "Mail script started";
+// echo "Mail script started";
 
 function sendPatientMail($email,$name,$patient_code){
 
@@ -38,7 +38,7 @@ $mail->Body = "
 
 $mail->send();
 
-echo "Mail Sent Successfully";
+// echo "Mail Sent Successfully";
 
 }catch(Exception $e){
 
