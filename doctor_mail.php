@@ -28,7 +28,7 @@ $mail->setFrom('caresyncbbsr@gmail.com','CareSync Hospital');
 $mail->addAddress($email,$name);
 
 $mail->isHTML(true);
-$mail->Subject = "Patient Registration Successful";
+$mail->Subject = "Doctor Registration Successful";
 
 $mail->Body = "
 <h2>Welcome Dr.$name</h2>
