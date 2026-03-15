@@ -1,6 +1,21 @@
+<?php
+require "../dbconnect.php";
+/* SEARCH LOGIC */
+$search = "";
+if (isset($_GET['search'])) {
+    $search = $_GET['search'];
+    $sql = "SELECT * FROM patients 
+            WHERE patient_code LIKE '%$search%' 
+            OR full_name LIKE '%$search%' 
+            OR mobile LIKE '%$search%'
+            ORDER BY patient_code DESC";
+} else {
+    $sql = "SELECT * FROM doctors ORDER BY doctor_code DESC";
+}
+$result = $conn->query($sql);
+?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,7 +29,6 @@
     <link rel="stylesheet" href="../styles/manage_doctor.css">
 
 </head>
-
 <body class="admin-bg">
     <div class="container-fluid">
         <!-- HEADER -->
@@ -39,10 +53,13 @@
                     </div>
                     <div class="col-md-3">
                         <select class="form-control">
-                            <option>All Departments</option>
-                            <option>Cardiology</option>
-                            <option>Neurology</option>
-                            <option>Orthopedic</option>
+                           <option value="">Select Department</option>
+                                <option value="Cardiology">Cardiology</option>
+                                <option value="Neurology">Neurology</option>
+                                <option value="Orthopedics">Orthopedics</option>
+                                <option value="Gynecology">Gynecology</option>
+                                <option value="Pediatrics">Pediatrics</option>
+                                <option value="General Medicine">General Medicine</option>
                         </select>
                     </div>
                     <div class="col-md-3">
@@ -94,6 +111,12 @@
                                         </td>
 
                                         <td>
+
+                                          <a class="btn btn-success btn-sm btn-rounded fw-bold me-2"
+                                                href="view_doctor.php?id=<?php echo $row['doctor_code']; ?>">
+                                                View
+                                            </a>
+
                                             <a class="btn btn-success btn-sm btn-rounded fw-bold me-2"
                                                 href="edit_doctor.php?id=<?php echo $row['doctor_code']; ?>">
                                                 Edit

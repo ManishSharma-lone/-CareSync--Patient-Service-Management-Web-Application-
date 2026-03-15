@@ -99,6 +99,11 @@ $result = $conn->query($sql);
                                         <td>
 
                                             <a class="btn btn-success btn-sm btn-rounded fw-bold me-2"
+                                                href="view_patient.php?id=<?php echo $row['patient_code']; ?>">
+                                                View
+                                            </a>
+
+                                            <a class="btn btn-success btn-sm btn-rounded fw-bold me-2"
                                                 href="edit_patient.php?id=<?php echo $row['patient_code']; ?>">
                                                 Edit
                                             </a>

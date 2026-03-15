@@ -1,56 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <title>CareSync - Add Patient</title>
     <link rel="stylesheet" href="../Bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="../styles/add_patient.css">
 </head>
-
 <body class="patient-bg">
-
     <div class="container mt-5 mb-5">
-
         <div class="card patient-card border-0">
-
             <div class="patient-header d-flex align-items-center gap-3">
-
                 <div class="icon-circle">
                     <img src="../icons/crowd.png" class="mx-auto mb-3" width="50">
                 </div>
-
                 <div class="add">
                     <h3 class="mb-0">Add New Patient</h3>
                     <small>Secure Patient Registration</small>
                 </div>
-
             </div>
-
             <div class="card-body p-4">
-
                 <form id="patientForm" onsubmit="return validateForm()" method="post" action="add_patient.php">
-
                     <div class="row">
-
                         <div class="col-md-6 mb-3">
                             <label class="form-label">Patient Full Name</label>
                             <input type="text" id="name" class="form-control custom-input" placeholder="Enter full name"
                                 name="name">
                         </div>
-
                         <div class="col-md-6 mb-3">
                             <label class="form-label">Email Address</label>
                             <input type="email" id="email" class="form-control custom-input" placeholder="Enter email"
                                 name="email">
                         </div>
-
                         <div class="col-md-6 mb-3">
                             <label class="form-label">Mobile Number</label>
                             <input type="tel" id="mobile" class="form-control custom-input"
                                 placeholder="Enter mobile number" name="mobile">
                         </div>
-
+                        
                         <div class="col-md-6 mb-3">
                             <label class="form-label">Date of Birth</label>
                             <input type="date" id="dob" class="form-control custom-input" name="dob">
