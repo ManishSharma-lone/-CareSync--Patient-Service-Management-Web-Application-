@@ -1,21 +1,27 @@
 <?php
 require "../dbconnect.php";
-/* SEARCH LOGIC */
-$search = "";
-if (isset($_GET['search'])) {
-    $search = $_GET['search'];
-    $sql = "SELECT * FROM patients 
-            WHERE patient_code LIKE '%$search%' 
-            OR full_name LIKE '%$search%' 
-            OR mobile LIKE '%$search%'
-            ORDER BY patient_code DESC";
-} else {
-    $sql = "SELECT * FROM doctors ORDER BY doctor_code DESC";
+$search = isset($_GET['search']) ? trim($_GET['search']) : "";
+$department = isset($_GET['department']) ? trim($_GET['department']) : "";
+
+$sql = "SELECT * FROM doctors WHERE 1";
+
+if (!empty($search)) {
+    $search = $conn->real_escape_string($search);
+    $sql .= " AND (doctor_code LIKE '%$search%' 
+               OR full_name LIKE '%$search%')";
 }
+
+if (!empty($department)) {
+    $department = $conn->real_escape_string($department);
+    $sql .= " AND LOWER(TRIM(department)) = LOWER(TRIM('$department'))";
+}
+
+$sql .= " ORDER BY doctor_code DESC";
 $result = $conn->query($sql);
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -29,6 +35,7 @@ $result = $conn->query($sql);
     <link rel="stylesheet" href="../styles/manage_doctor.css">
 
 </head>
+
 <body class="admin-bg">
     <div class="container-fluid">
         <!-- HEADER -->
@@ -36,40 +43,64 @@ $result = $conn->query($sql);
             <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
                 <div class="mb-0 manage_doctor">
                     <img src="../icons/medical-staff.png" class="mx-auto mb-3" width="50">
-                     Doctor Management
+                    Doctor Management
                 </div>
                 <a href="admin_dashboard.php" class="btn btn-light btn-rounded">
                     Go Back
                 </a>
             </div>
 
-            
+
             <div class="card-body">
 
                 <!-- SEARCH AND FILTER -->
-                <div class="row mb-3">
-                    <div class="col-md-4">
-                        <input type="text" class="form-control" placeholder="Search Doctor...">
+                <form method="GET">
+                    <div class="row mb-3">
+
+                        <!-- Search by ID or Name -->
+                        <div class="col-md-4">
+                            <input type="text" name="search" class="form-control" placeholder="Search by ID or Name..."
+                                value="<?php echo isset($_GET['search']) ? $_GET['search'] : ''; ?>">
+                        </div>
+
+                        <!-- Filter by Specialization -->
+                        <div class="col-md-3">
+                            <select name="department" class="form-control">
+                                <option value="">--SELECT--</option>
+
+                                <option value="Cardiology" <?php if ($department == "Cardiology")
+                                    echo "selected"; ?>>
+                                    Cardiology</option>
+
+                                <option value="Neurology" <?php if ($department == "Neurology")
+                                    echo "selected"; ?>>
+                                    Neurology</option>
+
+                                <option value="Orthopedics" <?php if ($department == "Orthopedics")
+                                    echo "selected"; ?>>Orthopedics</option>
+
+                                <option value="Gynecology" <?php if ($department == "Gynecology")
+                                    echo "selected"; ?>>
+                                    Gynecology</option>
+
+                                <option value="Pediatrics" <?php if ($department == "Pediatrics")
+                                    echo "selected"; ?>>
+                                    Pediatrics</option>
+
+                                <option value="General Medicine" <?php if ($department == "General Medicine")
+                                    echo "selected"; ?>>General Medicine</option>
+                            </select>
+                        </div>
+
+                        <!-- Search Button -->
+                        <div class="col-md-2">
+                            <button class="btn btn-primary btn-rounded px-4 fw-bold">
+                                Search
+                            </button>
+                        </div>
+
                     </div>
-                    <div class="col-md-3">
-                        <select class="form-control">
-                           <option value="">Select Department</option>
-                                <option value="Cardiology">Cardiology</option>
-                                <option value="Neurology">Neurology</option>
-                                <option value="Orthopedics">Orthopedics</option>
-                                <option value="Gynecology">Gynecology</option>
-                                <option value="Pediatrics">Pediatrics</option>
-                                <option value="General Medicine">General Medicine</option>
-                        </select>
-                    </div>
-                    <div class="col-md-3">
-                        <select class="form-control">
-                            <option>All Status</option>
-                            <option>Active</option>
-                            <option>Inactive</option>
-                        </select>
-                    </div>
-                </div>
+                </form>
 
                 <!-- TABLE -->
                 <div class="table-responsive">
@@ -85,7 +116,7 @@ $result = $conn->query($sql);
                             </tr>
                         </thead>
                         <tbody>
-                         <?php
+                            <?php
                             if ($result->num_rows > 0) {
                                 while ($row = $result->fetch_assoc()) {
                                     ?>
@@ -112,7 +143,7 @@ $result = $conn->query($sql);
 
                                         <td>
 
-                                          <a class="btn btn-success btn-sm btn-rounded fw-bold me-2"
+                                            <a class="btn btn-success btn-sm btn-rounded fw-bold me-2"
                                                 href="view_doctor.php?id=<?php echo $row['doctor_code']; ?>">
                                                 View
                                             </a>
@@ -123,7 +154,8 @@ $result = $conn->query($sql);
                                             </a>
 
 
-                                            <a href="delete_doctor.php?id=<?php echo $row['doctor_code']?>"class="btn btn-danger btn-sm btn-rounded fw-bold" data-bs-toggle="modal"
+                                            <a href="delete_doctor.php?id=<?php echo $row['doctor_code'] ?>"
+                                                class="btn btn-danger btn-sm btn-rounded fw-bold" data-bs-toggle="modal"
                                                 data-bs-target="#deleteModal"
                                                 onclick="setDeleteId('<?php echo $row['doctor_code']; ?>')">
                                                 Delete
@@ -138,7 +170,7 @@ $result = $conn->query($sql);
                                 echo "<tr><td colspan='7'>No Doctors Found</td></tr>";
 
                             }
-                            ?> 
+                            ?>
                         </tbody>
 
                     </table>
@@ -147,7 +179,7 @@ $result = $conn->query($sql);
         </div>
     </div>
     <script src="../Bootstrap/bootstrap.bundle.min.js"></script>
-      <div class="modal fade" id="deleteModal" tabindex="-1">
+    <div class="modal fade" id="deleteModal" tabindex="-1">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header bg-primary text-white">
@@ -167,11 +199,11 @@ $result = $conn->query($sql);
     <script>
         /* PASS PATIENT ID TO DELETE BUTTON */
         function setDeleteId(doctorId) {
-
             document.getElementById("deleteBtn").href =
                 "delete_doctor.php?id=" + doctorId;
         }
 
     </script>
 </body>
+
 </html>

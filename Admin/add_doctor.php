@@ -116,7 +116,7 @@
     if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
         require_once "../dbconnect.php";
-        $success=false;
+        $success = false;
         $name = $_POST['name'];
         $department = $_POST['department'];
         $specialization = $_POST['specialization'];
@@ -155,7 +155,7 @@
 
         if ($res) {
             $last_id = $conn->insert_id;
-            $success=true;
+            $success = true;
             // Generate doctor code
             $year = date("Y");
             $doctor_code = "DOC-" . $year . "-" . str_pad($last_id, 3, "0", STR_PAD_LEFT);
@@ -166,14 +166,21 @@
 
             // Insert into users table for login
             $role = "doctor";
-            $userQry = "INSERT INTO users(name,email,password,role) VALUES(?,?,?,?)";
+            $userQry = "INSERT INTO users(name,email,password,role,doctor_code) VALUES(?,?,?,?,?)";
             $userStmt = $conn->prepare($userQry);
-            $userStmt->bind_param("ssss", $name, $email, $passwordHash, $role);
+            $userStmt->bind_param("sssss", $name, $email, $passwordHash, $role, $doctor_code);
             $userStmt->execute();
 
-            
-             include "../doctor_mail.php";
-             sendDoctorMail($email,$name,$doctor_code,  $specialization);
+            $activity = "New Doctor Added";
+            $user = "Admin";
+
+            $logQuery = "INSERT INTO activity_logs (activity, user) VALUES (?, ?)";
+            $stmt = $conn->prepare($logQuery);
+            $stmt->bind_param("ss", $activity, $user);
+            $stmt->execute();
+
+            include "../doctor_mail.php";
+            sendDoctorMail($email, $name, $doctor_code, $specialization);
 
             echo "<script> document.addEventListener('DOMContentLoaded', function(){
               var myModal = new bootstrap.Modal(document.getElementById('successModal'));
@@ -211,11 +218,11 @@
 
     <script src="../Bootstrap/bootstrap.bundle.min.js"></script>
     <script src="../js/add_doctor.js"></script>
-        <?php if (isset($success) && $success) { ?>
+    <?php if (isset($success) && $success) { ?>
 
         <script>
             document.addEventListener("DOMContentLoaded", function () {
-              var successModal = new bootstrap.Modal(document.getElementById('successModal'));
+                var successModal = new bootstrap.Modal(document.getElementById('successModal'));
                 successModal.show();
                 setTimeout(function () {
                     window.location.href = "admin_dashboard.php";

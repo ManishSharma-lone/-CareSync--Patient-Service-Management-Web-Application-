@@ -9,42 +9,51 @@
 
 <body>
 
+<div class="container-fluid px-0">
+<div class="main-content w-100"></div>
+    <?php
+    session_start();
+    require_once '../dbconnect.php';
+    if (!isset($_SESSION['doctor_id'])) {
+        header('location:../login.php');
+        exit();
+    }
+
+    $id = $_SESSION['doctor_id'];
+    $qry = "SELECT * FROM doctors WHERE doctor_code=?";
+    $stmt = $conn->prepare($qry);
+    $stmt->bind_param("s", $id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+    } else {
+        echo "No Doctor found";
+        exit();
+    }
+    ?>
+
     <!-- TOP NAVBAR -->
     <nav class="navbar navbar-expand-lg top-navbar px-4">
 
         <div class="container-fluid d-flex justify-content-between align-items-center">
 
-            <!-- LEFT SIDE (Logo + Title) -->
             <div class="d-flex align-items-center dash">
                 <img src="../Assets/CareSyncLogo.png" width="30" alt="Logo">
-                <h4 class="ms-2 mb-0 fw-bold text-white">
-                    CareSync
-                </h4>
-
-                <h5 class="ms-4 mb-0 fw-bold text-white">
-                    Doctor Panel
-                </h5>
+                <h4 class="ms-2 mb-0 fw-bold text-white">CareSync</h4>
+                <h5 class="ms-4 mb-0 fw-bold text-white">Doctor Panel</h5>
             </div>
 
-            <!-- RIGHT SIDE (Icons + Logout) -->
             <div class="d-flex align-items-center gap-3">
-
-                <div class="icon-circle d-flex align-items-center justify-content-center">
-                    🔔
-                </div>
-
+                <div class="icon-circle d-flex align-items-center justify-content-center">🔔</div>
                 <div class="icon-circle d-flex align-items-center justify-content-center">
                     <img src="../icons/doctor.png" width="18" alt="Doctor">
                 </div>
-
-                <a href="../home.php" class="btn btn-light btn-rounded logout-btn">
-                    LogOut
-                </a>
-
+                <a href="../home.php" class="btn btn-light btn-rounded logout-btn">LogOut</a>
             </div>
 
         </div>
-
     </nav>
 
     <!-- MENU BAR -->
@@ -60,19 +69,19 @@
         </div>
     </nav>
 
-    <div class="container section-spacing">
+    <div class="container-fluid section-spacing px-4">
 
         <!-- WELCOME PANEL -->
         <div class="card welcome-card shadow-sm p-4 mb-4">
-
             <div class="d-flex align-items-center mb-2">
                 <h6 class="text-muted mb-0">Welcome</h6>
-                <img src="../icons/waving-hand.png" width="20" height="20" class="me-3" alt="Doctor Icon">
+                <img src="../icons/waving-hand.png" width="20" height="20" class="me-3">
             </div>
 
-            <h4 class="fw-bold mb-1 text-primary">Dr. Amit Sharma</h4>
-            <p class="mb-0 text-muted">Specialization: Cardiologist</p>
-
+            <h4 class="fw-bold mb-1 text-primary"><?php echo $row['full_name'] ?></h4>
+            <p class="mb-0 text-muted">
+                Specialization: <?php echo $row['specialization'] ?>
+            </p>
         </div>
 
         <!-- QUICK STATS -->
@@ -142,13 +151,13 @@
                     <button class="btn btn-primary me-2">View Today's Appointments</button>
                     <button class="btn btn-outline-primary">Update Availability</button>
                 </div>
-
             </div>
         </div>
 
     </div>
+</div>
+</div>
+<script src="../Bootstrap/bootstrap.bundle.min.js"></script>
 
-    <script src="../Bootstrap/bootstrap.bundle.min.js"></script>
 </body>
-
 </html>

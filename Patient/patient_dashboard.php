@@ -58,11 +58,36 @@
 
             <!-- MAIN CONTENT -->
             <div class="col-md-10 main-content">
+                <?php
+                session_start();
+                require_once '../dbconnect.php';
+                if (!isset($_SESSION['patient_id'])) {
+                    header('location:../login.php');
+                    exit();
+                }
 
+                $id = $_SESSION['patient_id'];
+                $qry = "SELECT * FROM patients WHERE patient_code=?";
+                $stmt = $conn->prepare($qry);
+                $stmt->bind_param("s", $id);
+                $stmt->execute();
+                $result = $stmt->get_result();
+
+                if ($result->num_rows > 0) {
+                    $row = $result->fetch_assoc();
+                } else {
+                    echo "No patient found";
+                    exit();
+                }
+                ?>
                 <!-- Welcome -->
                 <div class="section-card">
-                    <h4>Welcome, Manish <span><img src="../icons/waving-hand.png" width="30" alt="Logo"></span></h4>
-                    <p>Patient ID: <strong>PT1024</strong> | Blood Group: <strong>O+</strong></p>
+                    <h4>Welcome, <?php echo $row['full_name'] ?> <span><img src="../icons/waving-hand.png" width="30"
+                                alt="Logo"></span>
+                    </h4>
+                    <p>Patient ID: <strong><?php echo $row['patient_code'] ?> </strong> | Blood Group:
+                        <strong><?php echo $row['blood_group'] ?> </strong>
+                    </p>
                 </div>
 
                 <!-- Quick Cards -->

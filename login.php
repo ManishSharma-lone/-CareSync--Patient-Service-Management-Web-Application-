@@ -4,7 +4,6 @@ session_start();
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     require_once "dbconnect.php";
-
     // Trim the input to remove spaces
     $email = trim($_POST['email']);
     $password = trim($_POST['password']);
@@ -33,12 +32,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 header("Location: ./Admin/admin_dashboard.php");
                 exit();
             } elseif ($row['role'] == "doctor") {
+
+                if (empty($row['doctor_code'])) {
+                    echo "<script>alert('Doctor ID missing');</script>";
+                    exit();
+                }
+                $_SESSION['doctor_id'] = $row['doctor_code'];
                 header("Location: ./Doctor/doctor_dashboard.php");
                 exit();
             } elseif ($row['role'] == "patient") {
+                if (empty($row['patient_code'])) {
+                    echo "<script>alert('Patient ID missing');</script>";
+                    exit();
+                }
+                $_SESSION['patient_id'] = $row['patient_code'];
                 header("Location: ./Patient/patient_dashboard.php");
                 exit();
             } elseif ($row['role'] == "attendee") {
+                if (empty($row['attendee_code'])) {
+                    echo "<script>alert('Attendee ID missing');</script>";
+                    exit();
+                }
                 header("Location: ./Attendee/attendee_dashboard.php");
                 exit();
             }
