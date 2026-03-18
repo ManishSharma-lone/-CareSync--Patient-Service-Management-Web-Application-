@@ -1,5 +1,6 @@
 <?php
 require "../dbconnect.php";
+session_start();
 $search = isset($_GET['search']) ? trim($_GET['search']) : "";
 $department = isset($_GET['department']) ? trim($_GET['department']) : "";
 
@@ -153,7 +154,6 @@ $result = $conn->query($sql);
                                                 Edit
                                             </a>
 
-
                                             <a href="delete_doctor.php?id=<?php echo $row['doctor_code'] ?>"
                                                 class="btn btn-danger btn-sm btn-rounded fw-bold" data-bs-toggle="modal"
                                                 data-bs-target="#deleteModal"
@@ -205,5 +205,4 @@ $result = $conn->query($sql);
 
     </script>
 </body>
-
 </html>

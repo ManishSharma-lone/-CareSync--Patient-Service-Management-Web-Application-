@@ -12,7 +12,12 @@
 
 <body class="dashboard-bg">
     <?php
+    session_start();
     require_once '../dbconnect.php';
+    if (!isset($_SESSION['email'])) {
+        header('location:../login.php');
+        exit();
+    }
 
     // Total Doctors
     $docQuery = "SELECT COUNT(*) as total FROM doctors";
@@ -41,7 +46,7 @@
 
         <div class="text-white">
             <span class="me-3">Welcome, Admin</span>
-            <a href="../home.php" class="btn btn-light btn-rounded logout-btn">
+            <a href="../logout.php" class="btn btn-light btn-rounded logout-btn">
                 LogOut
             </a>
         </div>

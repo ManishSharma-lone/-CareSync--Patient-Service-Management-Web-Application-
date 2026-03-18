@@ -276,7 +276,7 @@
                 var successModal = new bootstrap.Modal(document.getElementById('successModal'));
                 successModal.show();
                 setTimeout(function () {
-                    window.location.href = "home.php";
+                    window.location.href = "../home.php";
                 }, 2000);
 
             });

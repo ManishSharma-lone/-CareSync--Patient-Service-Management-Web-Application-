@@ -15,7 +15,7 @@ function sendMail($toEmail, $toName, $subject, $body, $replyToEmail = null, $rep
         $mail->Host = 'smtp.gmail.com';
         $mail->SMTPAuth = true;
         $mail->Username = 'caresyncbbsr@gmail.com';
-        $mail->Password = 'omapbfdsfkdlpaow';
+        $mail->Password = 'eptjochajicisedu';
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port = 587;
 

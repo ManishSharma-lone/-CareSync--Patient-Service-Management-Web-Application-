@@ -17,7 +17,7 @@ $mail->isSMTP();
 $mail->Host = 'smtp.gmail.com';
 $mail->SMTPAuth = true;
 $mail->Username = 'caresyncbbsr@gmail.com';
-$mail->Password = 'omapbfdsfkdlpaow';
+$mail->Password = 'eptjochajicisedu';
 $mail->SMTPSecure = 'tls';
 $mail->Port = 587;
 

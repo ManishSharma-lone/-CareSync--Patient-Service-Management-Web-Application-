@@ -34,7 +34,7 @@
                 <img src="../icons/examination.png" width="18">
             </div>
 
-            <a href="../home.php" class="btn btn-light logout-btn">
+            <a href="../logout.php" class="btn btn-light logout-btn">
                 Logout
             </a>
 

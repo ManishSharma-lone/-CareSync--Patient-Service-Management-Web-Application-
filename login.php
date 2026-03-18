@@ -29,8 +29,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             // Redirect based on role
             if ($row['role'] == "admin") {
+                $_SESSION['email']=$row['email'];
                 header("Location: ./Admin/admin_dashboard.php");
                 exit();
+    
             } elseif ($row['role'] == "doctor") {
 
                 if (empty($row['doctor_code'])) {

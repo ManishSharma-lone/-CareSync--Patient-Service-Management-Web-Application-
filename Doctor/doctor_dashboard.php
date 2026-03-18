@@ -50,9 +50,8 @@
                 <div class="icon-circle d-flex align-items-center justify-content-center">
                     <img src="../icons/doctor.png" width="18" alt="Doctor">
                 </div>
-                <a href="../home.php" class="btn btn-light btn-rounded logout-btn">LogOut</a>
+                <a href="../logout.php" class="btn btn-light btn-rounded logout-btn">LogOut</a>
             </div>
-
         </div>
     </nav>
 
@@ -153,7 +152,6 @@
                 </div>
             </div>
         </div>
-
     </div>
 </div>
 </div>
