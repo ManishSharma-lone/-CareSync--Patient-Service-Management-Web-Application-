@@ -116,6 +116,7 @@
     if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
         require_once "../dbconnect.php";
+
         $success = false;
         $name = $_POST['name'];
         $department = $_POST['department'];
@@ -126,7 +127,6 @@
         $password = $_POST['password'];
         $confirmPassword = $_POST['confirmpassword'];
 
-        // Password match check
         if ($password != $confirmPassword) {
             echo "<script>alert('Passwords do not match');</script>";
             exit();
@@ -134,28 +134,28 @@
 
         $passwordHash = password_hash($password, PASSWORD_DEFAULT);
 
-        // Check email already exists
+        // Check if email exists
         $checkEmail = $conn->prepare("SELECT id FROM doctors WHERE email=?");
         $checkEmail->bind_param("s", $email);
         $checkEmail->execute();
         $resultEmail = $checkEmail->get_result();
-
         if ($resultEmail->num_rows > 0) {
             echo "<script>alert('Email already registered');</script>";
             exit();
         }
 
-        // Insert doctor
-        $qry = "INSERT INTO doctors(full_name, department, specialization, experience, contact, email, password)
-            VALUES(?,?,?,?,?,?,?)";
+        // Start transaction
+        $conn->begin_transaction();
 
-        $stmt = $conn->prepare($qry);
-        $stmt->bind_param("sssisss", $name, $department, $specialization, $experience, $contact, $email, $passwordHash);
-        $res = $stmt->execute();
-
-        if ($res) {
+        try {
+            // Insert into doctors
+            $qry = "INSERT INTO doctors(full_name, department, specialization, experience, contact, email, password)
+                VALUES(?,?,?,?,?,?,?)";
+            $stmt = $conn->prepare($qry);
+            $stmt->bind_param("sssisss", $name, $department, $specialization, $experience, $contact, $email, $passwordHash);
+            $stmt->execute();
             $last_id = $conn->insert_id;
-            $success = true;
+
             // Generate doctor code
             $year = date("Y");
             $doctor_code = "DOC-" . $year . "-" . str_pad($last_id, 3, "0", STR_PAD_LEFT);
@@ -164,29 +164,36 @@
             $update->bind_param("si", $doctor_code, $last_id);
             $update->execute();
 
-            // Insert into users table for login
+            // Insert into users table
             $role = "doctor";
             $userQry = "INSERT INTO users(name,email,password,role,doctor_code) VALUES(?,?,?,?,?)";
             $userStmt = $conn->prepare($userQry);
             $userStmt->bind_param("sssss", $name, $email, $passwordHash, $role, $doctor_code);
             $userStmt->execute();
 
+            // Insert into activity_logs
             $activity = "New Doctor Added";
             $user = "Admin";
-
             $logQuery = "INSERT INTO activity_logs (activity, user) VALUES (?, ?)";
-            $stmt = $conn->prepare($logQuery);
-            $stmt->bind_param("ss", $activity, $user);
-            $stmt->execute();
+            $stmtLog = $conn->prepare($logQuery);
+            $stmtLog->bind_param("ss", $activity, $user);
+            $stmtLog->execute();
 
+            // Commit transaction
+            $conn->commit();
+
+            // Send mail
             include "../doctor_mail.php";
             sendDoctorMail($email, $name, $doctor_code, $specialization);
 
             echo "<script> document.addEventListener('DOMContentLoaded', function(){
               var myModal = new bootstrap.Modal(document.getElementById('successModal'));
               myModal.show();});</script>";
-        } else {
-            echo "<script>alert('Error registering doctor');</script>";
+
+        } catch (Exception $e) {
+            // Rollback on any error
+            $conn->rollback();
+            echo "<script>alert('Error registering doctor: " . $e->getMessage() . "');</script>";
         }
 
         $conn->close();
