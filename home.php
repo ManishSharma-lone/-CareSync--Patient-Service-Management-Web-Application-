@@ -56,7 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         <div class="container-fluid">
 
             <a class="navbar-brand d-flex align-items-center" href="#">
-                <img src="/CARESYNC/Assets/CareSyncLogo.png" alt="Logo" class="logo me-2"
+                <img src="Assets/CareSyncLogo.png" alt="Logo" class="logo me-2"
                     style="width:50px;height:50px">
                 CareSync
             </a>
@@ -70,7 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                     <a class="nav-link active" href="#">Home</a>
                     <a class="nav-link" href="#services">Services</a>
                     <a class="nav-link" href="#contact">Contact</a>
-                    <a class="nav-link" href="/CARESYNC/login.php">Login</a>
+                    <a class="nav-link" href="login.php">Login</a>
                 </div>
             </div>
         </div>
@@ -101,7 +101,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
             <!-- RIGHT SIDE (IMAGE) -->
             <div class="col-12 col-md-6 text-center">
-                <img src="/CARESYNC/Assets/Hero.jpg" alt="Healthcare" class="img-fluid hero-img">
+                <img src="Assets/Hero.jpg" alt="Healthcare" class="img-fluid hero-img">
             </div>
         </div>
     </div>
@@ -315,7 +315,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 <!-- Header -->
                 <div class="modal-header custom-header">
                     <div class="d-flex align-items-center">
-                        <img src="/CARESYNC/Assets/CareSyncLogo.png" alt="Logo" class="logo-circle me-2">
+                        <img src="Assets/CareSyncLogo.png" alt="Logo" class="logo-circle me-2">
                         <h5 class="modal-title mb-0">CareSync</h5>
                     </div>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
@@ -367,7 +367,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 </div>
 
     <!-- Bootstrap JS -->
-    <script src="/CARESYNC/Bootstrap/bootstrap.bundle.min.js"></script>
+    <script src="Bootstrap/bootstrap.bundle.min.js"></script>
     <script>
 <?php if ($success) { ?>
                 document.addEventListener('DOMContentLoaded', function () {

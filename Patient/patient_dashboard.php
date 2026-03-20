@@ -1,172 +1,236 @@
+<?php
+include '../dbconnect.php';
+session_start();
+
+// Replace later with session
+$patient_id = 2;
+
+// Fetch latest appointments
+$query = "SELECT a.*, d.full_name, d.department 
+          FROM appointments a
+          JOIN doctors d ON a.doctor_id = d.id
+          WHERE a.patient_id = '$patient_id'
+          ORDER BY a.appointment_date DESC, a.appointment_time DESC
+          LIMIT 5";
+
+$result = $conn->query($query);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Care-Sync Patient Portal</title>
+    <title>Patient Dashboard - CareSync</title>
 
     <!-- Bootstrap -->
-    <link rel="stylesheet" href="../Bootstrap/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="../styles/patient_dashboard.css">
+    <!-- Custom Styling -->
+    <style>
+        body {
+            background: #f4f7fb;
+        }
+
+        .dashboard-header {
+            background: linear-gradient(135deg, #4a7cf3, #2d62d8);
+            color: white;
+            border-radius: 15px;
+            padding: 25px;
+        }
+
+        .card-box {
+            border: none;
+            border-radius: 15px;
+            transition: 0.3s;
+        }
+
+        .card-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .quick-btn {
+            border-radius: 12px;
+            padding: 12px;
+            font-weight: 500;
+        }
+
+        .section-title {
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        table {
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        footer {
+            border-top: 1px solid #ddd;
+        }
+    </style>
 
 </head>
 
 <body>
 
-    <!-- TOP NAVIGATION -->
-    <div class="top-nav d-flex justify-content-between align-items-center">
+<?php include 'patient_nav.php'; ?>
 
-        <div class="d-flex align-items-center dash nav">
-            <img src="../Assets/CareSyncLogo.png" width="45">
-            <h4 class="ms-2 mb-0 fw-bold text-white">CareSync</h4>
-            <h4 class="ms-4 mb-0 fw-boldtext-white"> Patient Panel</h4>
+<div class="container mt-4">
+
+    <!-- 🔵 HEADER -->
+    <div class="dashboard-header glass-header mb-4">
+    <div class="d-flex justify-content-between align-items-center flex-wrap">
+        <div>
+            <h3 class="fw-bold mb-1">Welcome back 👋</h3>
+            <p class="mb-0">Track your appointments and manage your health easily.</p>
         </div>
-        <div class="d-flex align-items-center gap-3">
-
-            <div class="icon-circle">
-                🔔
-            </div>
-
-            <div class="icon-circle">
-                <img src="../icons/examination.png" width="18">
-            </div>
-
-            <a href="../home.php" class="btn btn-light logout-btn">
-                Logout
-            </a>
-
+        <div>
+           
         </div>
     </div>
+</div>
 
-    <div class="container-fluid">
-        <div class="row">
+    <!-- 🟢 STATS -->
+    <div class="row g-4">
 
-            <!-- SIDEBAR -->
-            <div class="col-md-2 sidebar">
+        <div class="col-6 col-md-3">
+            <div class="card card-box text-center p-3 bg-primary text-white">
+                <h6>Upcoming</h6>
+                <h3>2</h3>
+            </div>
+        </div>
 
-                <a href="./search_doctor.php">🔍 Search Doctor</a>
-                <a href="#">📅 My Appointments</a>
-                <a href="#">💊 Prescriptions</a>
-                <a href="#">🧾 Medical Reports</a>
-                <a href="#">⭐ My Reviews</a>
-                <a href="#">🔔 Notifications</a>
-                <a href="#">🩺 Book Appointment</a>
+        <div class="col-6 col-md-3">
+            <div class="card card-box text-center p-3 bg-success text-white">
+                <h6>Completed</h6>
+                <h3>5</h3>
+            </div>
+        </div>
+
+        <div class="col-6 col-md-3">
+            <div class="card card-box text-center p-3 bg-warning text-dark">
+                <h6>Reports</h6>
+                <h3>3</h3>
+            </div>
+        </div>
+
+        <div class="col-6 col-md-3">
+            <div class="card card-box text-center p-3 bg-danger text-white">
+                <h6>Alerts</h6>
+                <h3>2</h3>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- 🟣 QUICK ACTIONS -->
+    <div class="mt-5">
+        <h5 class="section-title">Quick Actions</h5>
+
+        <div class="row g-3">
+
+            <div class="col-6 col-md-3">
+                <a href="book_appointment.php" class="btn btn-primary w-100 quick-btn">
+                    📅 Book Appointment
+                </a>
             </div>
 
-            <!-- MAIN CONTENT -->
-            <div class="col-md-10 main-content">
+            <div class="col-6 col-md-3">
+                <a href="my_appointments.php" class="btn btn-success w-100 quick-btn">
+                    📋 My Appointments
+                </a>
+            </div>
 
-                <!-- Welcome -->
-                <div class="section-card">
-                    <h4>Welcome, Manish <span><img src="../icons/waving-hand.png" width="30" alt="Logo"></span></h4>
-                    <p>Patient ID: <strong>PT1024</strong> | Blood Group: <strong>O+</strong></p>
-                </div>
+            <div class="col-6 col-md-3">
+                <a href="medical_records.php" class="btn btn-warning w-100 quick-btn">
+                    🧾 Medical Records
+                </a>
+            </div>
 
-                <!-- Quick Cards -->
-                <div class="row mb-4">
-
-                    <div class="col-md-3">
-                        <div class="info-card card-blue">
-                            Upcoming Visits
-                            <h4>2 Visits</h4>
-                        </div>
-                    </div>
-
-                    <div class="col-md-3">
-                        <div class="info-card card-green">
-                            Prescriptions
-                            <h4>1 New</h4>
-                        </div>
-                    </div>
-
-                    <div class="col-md-3">
-                        <div class="info-card card-orange">
-                            Reports
-                            <h4>3 Files</h4>
-                        </div>
-                    </div>
-
-                    <div class="col-md-3">
-                        <div class="info-card card-red">
-                            Notifications
-                            <h4>2 Alerts</h4>
-                        </div>
-                    </div>
-
-                </div>
-
-                <!-- Appointments -->
-                <div class="section-card">
-
-                    <h5 class="mb-3">📅 Upcoming Appointments</h5>
-
-                    <table class="table table-hover text-center">
-
-                        <thead class="table-dark">
-                            <tr>
-                                <th>Date</th>
-                                <th>Doctor</th>
-                                <th>Dept</th>
-                                <th>Time</th>
-                                <th>Status</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-
-                        <tbody>
-                            <tr>
-                                <td>12 Feb</td>
-                                <td>Dr Mehta</td>
-                                <td>Cardiology</td>
-                                <td>10:30 AM</td>
-                                <td><span class="badge bg-success">Confirmed</span></td>
-                                <td>
-                                    <button class="btn btn-warning btn-sm">Reschedule</button>
-                                    <button class="btn btn-danger btn-sm">Cancel</button>
-                                </td>
-                            </tr>
-                        </tbody>
-
-                    </table>
-
-                </div>
-
-                <!-- Prescription & Reports -->
-                <div class="row">
-
-                    <div class="col-md-6">
-                        <div class="section-card">
-                            <h5>💊 Recent Prescription</h5>
-                            <p>Dr Rao – Viral Fever – 5 Feb</p>
-                            <button class="btn btn-primary btn-sm">View</button>
-                            <button class="btn btn-success btn-sm">Download</button>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6">
-                        <div class="section-card">
-                            <h5>🧾 Recent Report</h5>
-                            <p>Blood Test – 3 Feb</p>
-                            <button class="btn btn-primary btn-sm">View</button>
-                            <button class="btn btn-success btn-sm">Download</button>
-                        </div>
-                    </div>
-
-                </div>
-
+            <div class="col-6 col-md-3">
+                <a href="profile.php" class="btn btn-dark w-100 quick-btn">
+                    👤 Profile
+                </a>
             </div>
 
         </div>
     </div>
 
-    <!-- FOOTER -->
-    <div class="footer">
-        © 2026 Care-Sync | Privacy Policy | Terms
+    <!-- 🔵 RECENT APPOINTMENTS -->
+    <div class="mt-5">
+        <h5 class="section-title">Recent Appointments</h5>
+
+        <div class="table-responsive shadow-sm">
+            <table class="table table-hover text-center align-middle bg-white">
+
+                <thead class="table-dark">
+                    <tr>
+                        <th>Date</th>
+                        <th>Doctor</th>
+                        <th>Department</th>
+                        <th>Time</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                <?php if($result->num_rows > 0) { ?>
+                    <?php while($row = $result->fetch_assoc()) { ?>
+
+                    <tr>
+                        <td><?= date("d M Y", strtotime($row['appointment_date'])) ?></td>
+
+                        <td>Dr <?= $row['full_name'] ?></td>
+
+                        <td><?= $row['department'] ?></td>
+
+                        <td><?= date("h:i A", strtotime($row['appointment_time'])) ?></td>
+
+                        <td>
+                            <?php if($row['status'] == 'Pending') { ?>
+                                <span class="badge bg-warning text-dark">Pending</span>
+                            <?php } elseif($row['status'] == 'Completed') { ?>
+                                <span class="badge bg-success">Completed</span>
+                            <?php } else { ?>
+                                <span class="badge bg-danger">Cancelled</span>
+                            <?php } ?>
+                        </td>
+
+                        <td>
+                            <a href="my_appointments.php" class="btn btn-sm btn-outline-primary">
+                                View
+                            </a>
+                        </td>
+                    </tr>
+
+                    <?php } ?>
+                <?php } else { ?>
+
+                    <tr>
+                        <td colspan="6">No Appointments Found</td>
+                    </tr>
+
+                <?php } ?>
+
+                </tbody>
+
+            </table>
+        </div>
+
     </div>
-    <script src="../Bootstrap/bootstrap.bundle.min.js"></script>
+
+</div>
+
+<!-- Footer -->
+<footer class="text-center mt-5 p-3 bg-white">
+    © 2026 CareSync | Patient Portal
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
-
 </html>

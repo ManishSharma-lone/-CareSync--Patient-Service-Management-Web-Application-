@@ -78,7 +78,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 <div class="logo-care">
 
-                    <img src="/CARESYNC/Assets/CareSyncLogo.png" class="logo me-2" style="width:50px;height:50px">
+                    <img src="Assets/CareSyncLogo.png" class="logo me-2" style="width:50px;height:50px">
                     <h2>CareSync</h2>
 
                 </div>

@@ -2,16 +2,12 @@ body{
 margin:0;
 font-family:Segoe UI;
 background:linear-gradient(135deg,#1e4db7,#3a6be0);
-height:100vh;
-display:flex;
-justify-content:center;
-align-items:center;
 }
 
 /* Card */
 
 .appointment-card{
-width:380px;   /* reduced from 500px */
+width:380px;
 border-radius:18px;
 overflow:hidden;
 background:white;
@@ -23,7 +19,7 @@ box-shadow:0 8px 20px rgba(0,0,0,0.2);
 .top-section{
 background:linear-gradient(135deg,#2d62d8,#4a7cf3);
 color:white;
-padding:25px 20px;  /* reduced */
+padding:25px 20px;
 }
 
 .top-section h1{
@@ -38,7 +34,7 @@ margin:0;
 }
 
 .logo{
-width:45px;   /* smaller logo */
+width:45px;
 }
 
 /* Form Section */
@@ -46,10 +42,6 @@ width:45px;   /* smaller logo */
 .form-section{
 padding:25px;
 background:#f2f2f2;
-}
-
-.form-section h3{
-font-size:20px;
 }
 
 .form-control{
@@ -116,4 +108,65 @@ background:#e5e5e5;
 padding:10px;
 text-align:center;
 font-size:12px;
+}
+
+/* FIXED LAYOUT */
+
+.main-container{
+display:flex;
+justify-content:center;
+align-items:center;
+min-height:calc(100vh - 70px); /* keeps below navbar */
+ width: 100%;
+}
+.navbar {
+    display: block !important;
+    width: 100% !important;
+}
+.content-wrapper {
+    width: 100%;
+    display: block;
+}
+
+body {
+    background: #f5f7fb;
+}
+
+.card {
+    backdrop-filter: blur(10px);
+}
+
+img.object-fit-cover {
+    object-fit: cover;
+}
+
+.btn-outline-primary:hover {
+    transform: scale(1.05);
+    transition: 0.2s;
+}
+
+.badge {
+    font-size: 14px;
+}
+/* Back Button Style */
+.back-btn {
+    background-color: #b8b520 !important;
+    color: #fff !important;
+    border: none !important;
+    transition: all 0.3s ease !important;
+}
+
+/* Hover Effect */
+.back-btn:hover {
+    background-color: #9318da !important;
+    transform: translateY(-4px);
+    box-shadow: 0 0 15px rgba(149, 18, 53, 0.6);
+}
+.glass-header {
+    background: rgba(74, 124, 243, 0.7);
+    backdrop-filter: blur(10px);
+    color: white;
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
 }
