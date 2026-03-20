@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 18, 2026 at 09:38 PM
+-- Generation Time: Mar 20, 2026 at 09:54 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -48,7 +48,10 @@ INSERT INTO `activity_logs` (`id`, `activity`, `user`, `created_at`) VALUES
 (7, 'New Patient Registered', 'Admin', '2026-03-18 19:00:16'),
 (8, 'New Patient Registered', 'Admin', '2026-03-18 19:05:05'),
 (9, 'New Doctor Added', 'Admin', '2026-03-18 19:40:26'),
-(10, 'New Patient Registered', 'Admin', '2026-03-18 19:50:35');
+(10, 'New Patient Registered', 'Admin', '2026-03-18 19:50:35'),
+(11, 'New Patient Registered', 'Admin', '2026-03-19 14:11:10'),
+(12, 'New Doctor Added', 'Admin', '2026-03-19 17:33:47'),
+(13, 'New Doctor Added', 'Admin', '2026-03-20 07:50:06');
 
 -- --------------------------------------------------------
 
@@ -89,6 +92,14 @@ CREATE TABLE `doctors` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `doctors`
+--
+
+INSERT INTO `doctors` (`id`, `doctor_code`, `full_name`, `department`, `specialization`, `experience`, `contact`, `email`, `password`, `created_at`) VALUES
+(2, 'DOC-2026-002', 'AnweshaDas ', 'Cardiology', 'Surgeon', 4, '9456312023', 'anweshadas388@gmail.com', '$2y$10$/FaOJ2cx28QQsxopskONyezf/Rk3C1t7HM8wpXv8U2NY8OcYYHYPC', '2026-03-19 17:33:47'),
+(3, 'DOC-2026-003', 'Rahul Kumar', 'Orthopedics', 'Surgeon', 2, '8340778990', 'manishsharna081999@gmail.com', '$2y$10$7fHoLMk5hzlfA96SqBWAauYHI01kABHIRKTPcxpxkQBgAO6I2LS5S', '2026-03-20 07:50:06');
+
 -- --------------------------------------------------------
 
 --
@@ -116,7 +127,7 @@ CREATE TABLE `patients` (
 --
 
 INSERT INTO `patients` (`id`, `patient_code`, `full_name`, `email`, `mobile`, `dob`, `gender`, `aadhar`, `blood_group`, `city`, `address`, `password`, `created_at`) VALUES
-(2, 'PAT-2026-002', 'Manish Sharma', 'sharmamanish5846579@gmail.com', '8340778990', '2026-03-06', 'male', '857578657687', 'O+', 'Barajamda', 'Near Reliance Tower Football Ground Barajamda', '$2y$10$bP8f3B27dorwyakCPfJLSuOMAzyeKg/AbQY4TPLO83IfuBXvgPCy.', '2026-03-18 19:50:35');
+(3, 'PAT-2026-003', 'Manish Sharma', 'manishsharma081999@gmail.com', '8340778990', '2026-03-04', 'male', '123456789235', 'B+', 'Barajamda', 'Near Reliance Tower Football Ground Barajamda', '$2y$10$PmyYXI7bwCNEcpb/0JWxXeI.z4UpoGvDfTwZmsbV.2RTiDaEt/d5q', '2026-03-19 14:11:10');
 
 -- --------------------------------------------------------
 
@@ -142,7 +153,9 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `role`, `reset_token`, `token_expiry`, `patient_code`, `doctor_code`) VALUES
 (2, 'Admin', 'admincaresync@gmail.com', '$2y$10$kY.6iwQF3JZyXIBHjJfhnuqs.PFDBDPfU2fQbT8.3OUjQkBKy6Gwi', 'admin', NULL, NULL, NULL, NULL),
-(4, 'Manish Sharma', 'sharmamanish5846579@gmail.com', '$2y$10$bP8f3B27dorwyakCPfJLSuOMAzyeKg/AbQY4TPLO83IfuBXvgPCy.', 'patient', NULL, NULL, 'PAT-2026-002', NULL);
+(5, 'Manish Sharma', 'manishsharma081999@gmail.com', '$2y$10$PmyYXI7bwCNEcpb/0JWxXeI.z4UpoGvDfTwZmsbV.2RTiDaEt/d5q', 'patient', '2eb9a1ade2c25828b96d592f118b5e854ecd734e3a0a89c16a7c1d50a38afaba2152c5552bc00cdfbe9cf74c21ebfe2713be', '2026-03-19 19:29:56', 'PAT-2026-003', NULL),
+(6, 'AnweshaDas ', 'anweshadas388@gmail.com', '$2y$10$/FaOJ2cx28QQsxopskONyezf/Rk3C1t7HM8wpXv8U2NY8OcYYHYPC', 'doctor', NULL, NULL, NULL, 'DOC-2026-002'),
+(7, 'Rahul Kumar', 'manishsharna081999@gmail.com', '$2y$10$7fHoLMk5hzlfA96SqBWAauYHI01kABHIRKTPcxpxkQBgAO6I2LS5S', 'doctor', NULL, NULL, NULL, 'DOC-2026-003');
 
 --
 -- Indexes for dumped tables
@@ -189,25 +202,25 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `activity_logs`
 --
 ALTER TABLE `activity_logs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `doctors`
 --
 ALTER TABLE `doctors`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `patients`
 --
 ALTER TABLE `patients`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
