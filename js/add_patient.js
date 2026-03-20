@@ -97,3 +97,66 @@ function validateForm(){
 
     return isValid;
 }
+
+//Aadhar Verification
+
+// let txnId = "";
+// let aadhaarVerified = false;
+
+// async function sendOtp() {
+//     const aadhaar = document.getElementById("aadhar").value;
+//     if (aadhaar.length !== 12) {
+//         alert("Enter valid 12-digit Aadhaar number");
+//         return;
+//     }
+
+//     document.getElementById("sendOtpBtn").disabled = true;
+
+//     const res = await fetch("../Aadhar/send_otp.php", { 
+//         method: "POST",
+//         headers: { "Content-Type": "application/json" },
+//         body: JSON.stringify({ aadhaar })
+//     });
+//     const data = await res.json();
+
+//     if (data.txnId) {
+//         txnId = data.txnId;
+//         document.getElementById("otpSection").style.display = "block";
+//         document.getElementById("otpMsg").innerText = "OTP sent to registered mobile.";
+//     } else {
+//         alert("Error sending OTP: " + JSON.stringify(data));
+//         document.getElementById("sendOtpBtn").disabled = false;
+//     }
+// }
+
+// async function verifyOtp() {
+//     const otp = document.getElementById("aadhaarOtp").value;
+//     if (otp.length !== 6) {
+//         alert("Enter 6-digit OTP");
+//         return;
+//     }
+
+//     const res = await fetch("../Aadhar/verify_otp.php", {
+//         method: "POST",
+//         headers: { "Content-Type": "application/json" },
+//         body: JSON.stringify({ txnId, otp })
+//     });
+
+//     const data = await res.json();
+
+//     if (data.success !== false) {
+//         aadhaarVerified = true;
+//         document.getElementById("otpMsg").innerText = "Aadhaar verified successfully!";
+//         document.getElementById("aadhaarOtp").disabled = true;
+//     } else {
+//         alert("OTP verification failed: " + JSON.stringify(data));
+//     }
+// }
+
+// // Prevent form submission if Aadhaar not verified
+// document.getElementById("patientForm").addEventListener("submit", function(e) {
+//     if (!aadhaarVerified) {
+//         e.preventDefault();
+//         alert("Please verify Aadhaar before submitting the form.");
+//     }
+// });

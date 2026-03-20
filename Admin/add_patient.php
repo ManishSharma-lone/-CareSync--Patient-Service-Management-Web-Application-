@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>CareSync - Add Patient</title>
     <link rel="stylesheet" href="../Bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="../styles/add_patient.css">
 </head>
+
 <body class="patient-bg">
     <div class="container mt-5 mb-5">
         <div class="card patient-card border-0">
@@ -36,7 +38,7 @@
                             <input type="tel" id="mobile" class="form-control custom-input"
                                 placeholder="Enter mobile number" name="mobile">
                         </div>
-                        
+
                         <div class="col-md-6 mb-3">
                             <label class="form-label">Date of Birth</label>
                             <input type="date" id="dob" class="form-control custom-input" name="dob">
@@ -218,6 +220,14 @@
                 // $patient_email = $email;
                 // $patient_id = $patient_code;
     
+                $activity = "New Patient Registered";
+                $user = "Admin";
+
+                $logQuery = "INSERT INTO activity_logs (activity, user) VALUES (?, ?)";
+                $stmt = $conn->prepare($logQuery);
+                $stmt->bind_param("ss", $activity, $user);
+                $stmt->execute();
+
                 include "../php_mail.php";
                 sendPatientMail($email, $name, $patient_code);
                 echo "<script>
@@ -263,14 +273,15 @@
 
         <script>
             document.addEventListener("DOMContentLoaded", function () {
-              var successModal = new bootstrap.Modal(document.getElementById('successModal'));
+                var successModal = new bootstrap.Modal(document.getElementById('successModal'));
                 successModal.show();
                 setTimeout(function () {
-                    window.location.href = "admin_dashboard.php";
+                    window.location.href = "../home.php";
                 }, 2000);
 
             });
         </script>
     <?php } ?>
 </body>
+
 </html>

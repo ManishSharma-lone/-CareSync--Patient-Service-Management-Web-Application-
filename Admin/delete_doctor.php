@@ -11,13 +11,13 @@ $conn->begin_transaction();
 
 try {
 
-    /* DELETE FROM PATIENTS TABLE */
-    $qry1 = "DELETE FROM patients WHERE doctor_code=?";
+    /* DELETE FROM DOCTORS TABLE */
+    $qry1 = "DELETE FROM doctors WHERE doctor_code=?";
     $stmt1 = $conn->prepare($qry1);
     $stmt1->bind_param("s", $id);
     $stmt1->execute();
 
-    /* DELETE FROM SECOND TABLE */
+    /* DELETE FROM USER TABLE */
     $qry2 = "DELETE FROM users WHERE doctor_code=?";
     $stmt2 = $conn->prepare($qry2);
     $stmt2->bind_param("s", $id);
@@ -27,7 +27,7 @@ try {
     $conn->commit();
 
     $status = "Success";
-    $message = "Patient Deleted Successfully";
+    $message = "Doctor Deleted Successfully";
     $color = "success";
 
 } catch (Exception $e) {
