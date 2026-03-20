@@ -19,6 +19,7 @@ $patientResult = $stmt->get_result();
 
 if ($patientResult->num_rows > 0) {
     $patient = $patientResult->fetch_assoc();
+    $real_patient_id = $patient['id'];
 } else {
     echo "No patient found";
     exit();
@@ -28,8 +29,8 @@ if ($patientResult->num_rows > 0) {
 $query = "SELECT a.*, d.full_name, d.department 
           FROM appointments a
           JOIN doctors d ON a.doctor_id = d.id
-          WHERE a.patient_id = '$patient_id'
-          ORDER BY a.appointment_date DESC, a.appointment_time DESC
+          WHERE a.patient_id = '$real_patient_id'
+          ORDER BY a.created_at DESC
           LIMIT 5";
 
 $result = $conn->query($query);
@@ -75,8 +76,8 @@ body { background: #f4f7fb; }
 
         <!-- COMBINED RIGHT SIDE -->
         <div class="d-flex align-items-center gap-3">
-            🔔
-            <img src="../icons/examination.png" width="20">
+            
+           <!-- <img src="../icons/examination.png" width="20">-->
             <a href="../logout.php" class="btn btn-light">Logout</a>
         </div>
     </div>

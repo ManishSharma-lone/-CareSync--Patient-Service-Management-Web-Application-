@@ -77,6 +77,7 @@ $doctors = $conn->query("SELECT * FROM doctors");
                                 <label class="form-label">Available Slots</label>
 
                                 <div class="d-flex flex-wrap gap-2 mb-3">
+                                    
 
                                     <input type="radio" class="btn-check" name="slot" value="09:00:00" id="s1">
                                     <label class="btn btn-outline-primary" for="s1">09:00 AM</label>
@@ -97,7 +98,7 @@ $doctors = $conn->query("SELECT * FROM doctors");
                                 </div>-->
 
                                 <!-- Hidden -->
-                                <input type="hidden" name="patient_id" value="<?= $patient_id ?>">
+                               
 
                                 <!-- Submit -->
                                 <button type="submit" class="btn btn-primary w-100 py-2 rounded-3">
@@ -137,8 +138,9 @@ document.querySelectorAll("input[name='slot']").forEach(el => {
     el.addEventListener("change", checkAvailability);
 });
 
-// 🔥 Disable booked slots
+// 🔥 Check all slots and disable booked ones
 function checkSlots() {
+
     let doctor = document.getElementById("doctor").value;
     let date = document.getElementById("date").value;
 
@@ -146,21 +148,23 @@ function checkSlots() {
 
         document.querySelectorAll("input[name='slot']").forEach(slot => {
 
+            let label = document.querySelector(`label[for='${slot.id}']`);
+
+            // reset
+            slot.disabled = false;
+            label.classList.remove("btn-danger");
+
+            // remove ❌ safely
+            label.innerText = label.innerText.replace(" ❌", "");
+
             fetch(`check_availability.php?doctor_id=${doctor}&date=${date}&time=${slot.value}`)
             .then(res => res.text())
             .then(data => {
 
-                let label = document.querySelector(`label[for='${slot.id}']`);
-
-                if(data === "Not Available"){
+                if(data.trim() === "Not Available"){
                     slot.disabled = true;
-                    label.classList.remove("btn-outline-primary");
                     label.classList.add("btn-danger");
-                    label.innerText = label.innerText + " ❌";
-                } else {
-                    slot.disabled = false;
-                    label.classList.remove("btn-danger");
-                    label.classList.add("btn-outline-primary");
+                    label.innerText += " ❌";
                 }
 
             });
@@ -170,7 +174,7 @@ function checkSlots() {
     }
 }
 
-// 🔥 Show status when selecting slot
+// 🔥 Check selected slot
 function checkAvailability() {
 
     let doctor = document.getElementById("doctor").value;
@@ -183,19 +187,23 @@ function checkAvailability() {
         .then(res => res.text())
         .then(data => {
 
-            let status = document.getElementById("statusText");
-
-            if(data === "Available"){
-                status.className = "badge bg-success px-3 py-2";
-                status.innerText = "Available";
-            } else {
-                status.className = "badge bg-danger px-3 py-2";
-                status.innerText = "Not Available";
-            }
+            // just store result internally
+            window.currentStatus = data.trim();
 
         });
 
     }
+}
+
+// 🔥 Prevent wrong booking
+function validateBooking(){
+
+    if(window.currentStatus !== "Available"){
+        alert("Slot not available!");
+        return false;
+    }
+
+    return true;
 }
 </script>
 <script>
